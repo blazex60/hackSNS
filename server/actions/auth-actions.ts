@@ -14,7 +14,8 @@ export async function loginAction(formData: FormData) {
     // セッション処理などをここに追加
     revalidatePath('/dashboard');
     redirect('/dashboard');
-  } else {
-    return { error: 'ログイン失敗' };
   }
+  
+  // redirect()が呼ばれない場合はエラーを返す
+  // 注意: この部分に到達するとエラーを表示する処理が必要
 }
