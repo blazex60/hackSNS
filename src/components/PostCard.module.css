@@ -1,0 +1,104 @@
+.postCard {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  padding: 20px;
+  margin-bottom: 16px;
+  transition: box-shadow 0.2s;
+}
+
+.postCard:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.postHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.userInfo {
+  flex: 1;
+}
+
+.displayName {
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0;
+  font-size: 15px;
+}
+
+.username {
+  color: #718096;
+  font-size: 14px;
+  margin: 2px 0 0 0;
+}
+
+.timestamp {
+  color: #a0aec0;
+  font-size: 13px;
+}
+
+.postContent {
+  color: #2d3748;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.postImage {
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 12px;
+  max-height: 400px;
+  object-fit: cover;
+}
+
+.postActions {
+  display: flex;
+  gap: 24px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #f7fafc;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: #718096;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.actionButton:hover {
+  background: #f7fafc;
+  color: #667eea;
+}
+
+.actionButton.liked {
+  color: #e53e3e;
+}
+
+.actionButton.liked:hover {
+  background: #fff5f5;
+}
