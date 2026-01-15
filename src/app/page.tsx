@@ -1,66 +1,58 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "./login.module.css";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>aaaaaaaaaaaaaaaaa</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className={styles.container}>
+      <div className={styles.langSelector}>
+        日本語 <span>&#8964;</span>
+      </div>
+
+      <div className={styles.contentWrapper}>
+        <h1 className={styles.logo}>Nyanstagram</h1>
+
+        <button className={styles.facebookButton}>
+          <span className={styles.facebookIcon}>C</span> Catbookでログイン
+        </button>
+
+        <div className={styles.separator}>
+          <div className={styles.line}></div>
+          <span className={styles.orText}>または</span>
+          <div className={styles.line}></div>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+
+        <form className={styles.form}>
+          <input 
+            type="text" 
+            className={styles.input} 
+            placeholder="電話番号、ユーザーネーム、メールアドレス" 
+          />
+          <input 
+            type="password" 
+            className={styles.input} 
+            placeholder="パスワード" 
+          />
+          
+          <a href="#" className={styles.forgotPassword}>
+            パスワードを忘れた場合
           </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+          <button className={styles.loginButton}>
+            ログイン
+          </button>
+        </form>
+
+        <div className={styles.signupWrapper}>
+          アカウントをお持ちでないですか？
+          <a href="#" className={styles.signupLink}>登録する</a>
         </div>
-      </main>
+      </div>
+
+      <footer className={styles.metaFooter}>
+        <span className={styles.fromText}>from</span>
+        <div className={styles.metaLogo}>
+          <span>&#8734;</span> Tama
+        </div>
+      </footer>
     </div>
   );
 }
