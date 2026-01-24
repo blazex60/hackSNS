@@ -1,0 +1,179 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #fff;
+  padding: 20px 40px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.langSelector {
+  align-self: center;
+  margin-bottom: 40px;
+  color: #8e8e8e;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.contentWrapper {
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Instagram Logo Placeholder - Using text for now, usually an image */
+.logo {
+  font-family: cursive; /* Fallback for script font */
+  font-size: 3.5rem;
+  margin-bottom: 40px;
+  margin-top: 50px;
+  color: #262626;
+  text-align: center;
+}
+
+/* Facebook Button */
+.facebookButton {
+  width: 100%;
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.facebookIcon {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* Divider */
+.separator {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+  background-color: #dbdbdb;
+}
+
+.orText {
+  margin: 0 15px;
+  color: #8e8e8e;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Form */
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.input {
+  width: 100%;
+  background: #fafafa;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+  padding: 11px 8px;
+  font-size: 14px;
+  color: #262626;
+  outline: none;
+}
+
+.input:focus {
+  border-color: #a8a8a8;
+}
+
+.input::placeholder {
+  color: #8e8e8e;
+}
+
+.forgotPassword {
+  align-self: flex-end; /* Right align as per the screenshot (actually screenshot looks aligned/centered? no, usually right or center. Wait, in screenshot it is blue link below password) */
+  /* Re-checking screenshot: "パスワードを忘れた場合" is blue text, right aligned? No, it looks like it's right aligned or maybe center but typically right. Let's make it right aligned as that's common pattern, or center if it looks like a separate block.
+     In the screenshot, "パスワードを忘れた場合" is right below the password field. It is Right Aligned.
+  */
+  display: block;
+  text-align: right; 
+  width: 100%;
+  color: #0095f6;
+  font-size: 12px;
+  margin-top: 12px;
+  margin-bottom: 24px;
+  text-decoration: none;
+}
+
+.loginButton {
+  background-color: #bae0fd; /* Light blue when disabled/empty (Login) */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  width: 100%;
+  height: 44px; /* Touch target size */
+}
+
+/* Signup area */
+.signupWrapper {
+  margin-top: 40px;
+  font-size: 14px;
+  color: #8e8e8e;
+  text-align: center;
+}
+
+.signupLink {
+  color: #0095f6;
+  font-weight: 600;
+  margin-left: 5px;
+  text-decoration: none;
+}
+
+/* Footer */
+.metaFooter {
+  margin-top: auto;
+  padding-top: 40px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: #8e8e8e;
+  font-size: 12px;
+}
+
+.fromText {
+  font-size: 12px;
+  color: #8e8e8e;
+}
+
+.metaLogo {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+  font-size: 16px;
+  color: #262626; 
+}

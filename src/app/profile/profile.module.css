@@ -1,0 +1,236 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #fff;
+  padding-bottom: 60px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #262626;
+}
+
+/* Header */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space between for back arrow and menu? */
+  /* Actually looks like: < username ... > but usually just username with dropdown arrow */
+  height: 44px;
+  padding: 0 16px;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.headerTitle {
+  font-weight: 700;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.verified {
+  color: #0095f6; /* Blue tick */
+  font-size: 12px;
+}
+
+.menuIcon {
+  font-size: 24px;
+}
+
+/* Profile Info */
+.profileInfo {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.avatarContainer {
+  position: relative;
+}
+
+.storyRing {
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  padding: 2px;
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: white; /* Spacer */
+  border: 2px solid white;
+}
+
+.stats {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.statNumber {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.statLabel {
+  font-size: 12px;
+  color: #262626;
+}
+
+/* Bio */
+.bio {
+  padding: 0 16px 16px 16px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.bioName {
+  font-weight: 700;
+  display: block;
+}
+
+.link {
+  color: #00376b;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Action Buttons */
+.actions {
+  display: flex;
+  padding: 0 16px 16px;
+  gap: 8px;
+}
+
+.actionBtn {
+  flex: 1;
+  background-color: transparent;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+  padding: 6px 0;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.actionBtnPrimary {
+  /* Sometimes blue, sometimes white */
+  background-color: transparent;
+}
+
+/* Highlights */
+.highlights {
+  display: flex;
+  gap: 16px;
+  padding: 0 16px 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.highlights::-webkit-scrollbar {
+  display: none;
+}
+
+.highlightItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 60px;
+}
+
+.highlightAvatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #efefef;
+  border: 1px solid #dbdbdb;
+  padding: 2px;
+}
+
+.highlightLabel {
+  font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 60px;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  border-top: 1px solid #dbdbdb;
+  border-bottom: 1px solid #dbdbdb;
+  height: 44px;
+}
+
+.tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #8e8e8e;
+  cursor: pointer;
+}
+
+.activeTab {
+  color: #262626;
+  border-bottom: 1px solid #262626; /* Usually instagram just highlights the icon */
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.gridItem {
+  aspect-ratio: 1 / 1;
+  background-color: #efefef;
+  position: relative;
+}
+
+/* Bottom Nav (Duplicated from Feed for now) */
+.bottomNav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: white;
+  border-top: 1px solid #dbdbdb;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 20;
+}
+
+.navIcon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.navProfile {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #262626; /* Active stateish */
+}
