@@ -12,8 +12,8 @@ export async function loginAction(formData: FormData) {
   
   if (user) {
     // セッション処理などをここに追加
-    revalidatePath('/dashboard');
-    redirect('/dashboard');
+    revalidatePath('/feed');
+    redirect('/feed');
   } else {
     // 認証失敗時はログインページにエラーメッセージ付きでリダイレクト
     redirect('/login?error=invalid-credentials');

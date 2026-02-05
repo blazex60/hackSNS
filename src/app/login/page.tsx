@@ -1,60 +1,61 @@
-import { loginAction } from '@/server/actions/auth-actions';
-import styles from './login.module.css';
+import styles from "./login.module.css";
+import { loginAction } from "@/server/actions/auth-actions";
 
-export default function LoginPage() {
+export default function Home() {
   return (
     <div className={styles.container}>
-      <div className={styles.loginCard}>
-        <div className={styles.logo}>
-          <div className={styles.logoIcon}>🔐</div>
-          <h1 className={styles.title}>HackSNS</h1>
-          <p className={styles.subtitle}>SQLインジェクション実習環境</p>
+      <div className={styles.langSelector}>
+        日本語 <span>&#8964;</span>
+      </div>
+
+      <div className={styles.contentWrapper}>
+        <h1 className={styles.logo}>Nyanstagram</h1>
+
+        <button className={styles.facebookButton}>
+          <span className={styles.facebookIcon}>C</span> Catbookでログイン
+        </button>
+
+        <div className={styles.separator}>
+          <div className={styles.line}></div>
+          <span className={styles.orText}>または</span>
+          <div className={styles.line}></div>
         </div>
 
-        <form action={loginAction} className={styles.form}>
-          <div className={styles.inputGroup}>
-            <label htmlFor="username" className={styles.label}>
-              ユーザー名
-            </label>
-            <input
-              id="username"
-              name="username"
-              type="text"
-              className={styles.input}
-              placeholder="ユーザー名を入力"
-              required
-            />
-          </div>
+        <form className={styles.form} action={loginAction}>
+          <input 
+            type="text" 
+            name="username"
+            className={styles.input} 
+            placeholder="電話番号、ユーザーネーム、メールアドレス" 
+          />
+          <input 
+            type="password" 
+            name="password"
+            className={styles.input} 
+            placeholder="パスワード" 
+          />
+          
+          <a href="#" className={styles.forgotPassword}>
+            パスワードを忘れた場合
+          </a>
 
-          <div className={styles.inputGroup}>
-            <label htmlFor="password" className={styles.label}>
-              パスワード
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              className={styles.input}
-              placeholder="パスワードを入力"
-              required
-            />
-          </div>
-
-          <button type="submit" className={styles.submitButton}>
+          <button type="submit" className={styles.loginButton}>
             ログイン
           </button>
         </form>
 
-        <div className={styles.demoInfo}>
-          <h3>💡 デモアカウント</h3>
-          <p>👤 ユーザー名: <code>admin</code> / パスワード: <code>password123</code></p>
-          <p>👤 ユーザー名: <code>user</code> / パスワード: <code>test456</code></p>
-        </div>
-
-        <div className={styles.footer}>
-          <p>© 2026 HackSNS - Educational Purpose Only</p>
+        <div className={styles.signupWrapper}>
+          アカウントをお持ちでないですか？
+          <a href="#" className={styles.signupLink}>登録する</a>
         </div>
       </div>
+
+      <footer className={styles.metaFooter}>
+        <span className={styles.fromText}>from</span>
+        <div className={styles.metaLogo}>
+          <span>&#8734;</span> Tama
+        </div>
+      </footer>
     </div>
   );
 }
