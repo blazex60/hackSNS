@@ -1,58 +1,16 @@
-import styles from "./login.module.css";
+import Link from 'next/link';
 
-export default function Home() {
+export default function LandingPage() {
   return (
-    <div className={styles.container}>
-      <div className={styles.langSelector}>
-        日本語 <span>&#8964;</span>
+    <main style={{ padding: '2rem', textAlign: 'center' }}>
+      <h1>サービスへようこそ</h1>
+      <p>ここはランディングページです。</p>
+      
+      <div style={{ marginTop: '20px' }}>
+        <Link href="/login" style={{ color: 'blue', textDecoration: 'underline' }}>
+          ログインはこちら
+        </Link>
       </div>
-
-      <div className={styles.contentWrapper}>
-        <h1 className={styles.logo}>Nyanstagram</h1>
-
-        <button className={styles.facebookButton}>
-          <span className={styles.facebookIcon}>C</span> Catbookでログイン
-        </button>
-
-        <div className={styles.separator}>
-          <div className={styles.line}></div>
-          <span className={styles.orText}>または</span>
-          <div className={styles.line}></div>
-        </div>
-
-        <form className={styles.form}>
-          <input 
-            type="text" 
-            className={styles.input} 
-            placeholder="電話番号、ユーザーネーム、メールアドレス" 
-          />
-          <input 
-            type="password" 
-            className={styles.input} 
-            placeholder="パスワード" 
-          />
-          
-          <a href="#" className={styles.forgotPassword}>
-            パスワードを忘れた場合
-          </a>
-
-          <button className={styles.loginButton}>
-            ログイン
-          </button>
-        </form>
-
-        <div className={styles.signupWrapper}>
-          アカウントをお持ちでないですか？
-          <a href="#" className={styles.signupLink}>登録する</a>
-        </div>
-      </div>
-
-      <footer className={styles.metaFooter}>
-        <span className={styles.fromText}>from</span>
-        <div className={styles.metaLogo}>
-          <span>&#8734;</span> Tama
-        </div>
-      </footer>
-    </div>
+    </main>
   );
 }
