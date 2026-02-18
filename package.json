@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "attack": "tsx tools/dictionary-attack.ts"
+    "attack": "tsx tools/dictionary-attack.ts",
+    "brute": "tsx tools/brute-force.ts"
   },
   "dependencies": {
     "better-sqlite3": "^12.5.0",
