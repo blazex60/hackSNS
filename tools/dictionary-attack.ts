@@ -18,7 +18,6 @@
 
 import fs from 'fs';
 import path from 'path';
-import readline from 'readline';
 
 // ─── CLI 引数パース ────────────────────────────────────────────────────────────
 
@@ -98,8 +97,7 @@ async function main(): Promise<void> {
     verbose: VERBOSE,
   });
 
-  const fileStream = fs.createReadStream(WORDLIST, { encoding: 'utf8' });
-  const rl = readline.createInterface({ input: fileStream, crlfDelay: Infinity });
+  const passwords: string[] = JSON.parse(fs.readFileSync(WORDLIST, 'utf8'));
 
   let attempt       = 0; // 完了した試行数
   let queued        = 0; // 送信済み（完了待ち含む）試行数
@@ -167,8 +165,7 @@ async function main(): Promise<void> {
             message,
           });
 
-          rl.close();
-          fileStream.destroy();
+          found = true; // ループを抜けるフラグ（再代入防止）
         }
       })
       .catch((err) => {
@@ -182,13 +179,12 @@ async function main(): Promise<void> {
     activePromises.add(p);
   };
 
-  for await (const line of rl) {
+  for (const rawPassword of passwords) {
     if (found) break;
 
-    const password = line.trim();
+    const password = rawPassword.trim();
 
-    // rockyou.json の先頭 `{` と末尾 `}` をスキップ
-    if (password === '{' || password === '}' || password === '') {
+    if (password === '') {
       skipped++;
       continue;
     }
@@ -210,7 +206,7 @@ async function main(): Promise<void> {
     runOne(password);
   }
 
-  // 飛行中のリクエストをすべて待つ
+  // 実行中のリクエストをすべて待つ
   if (activePromises.size > 0) {
     await Promise.allSettled(activePromises);
   }
