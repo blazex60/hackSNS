@@ -138,20 +138,34 @@ async function main(): Promise<void> {
           foundPassword = password;
           const user    = (result.body as { user?: Record<string, unknown> }).user ?? null;
           const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
-          const banner  = '='.repeat(60);
           const message = `Target:${TARGET} Password:${foundPassword}`;
 
-          // バナーを stderr（非バッファリング）で先に出力してから JSON ログを出す
+          // ─── 見つけた！バナー（stderr に出力） ────────────────────────────────
+          const W      = 62;
+          const border = '★'.repeat(W);
+          const pad    = (text: string) => {
+            const space = W - 2 - text.length;
+            const l     = Math.floor(space / 2);
+            const r     = space - l;
+            return `★${' '.repeat(l)}${text}${' '.repeat(r)}★`;
+          };
+
           console.error('');
-          console.error(banner);
-          console.error('  ** PASSWORD FOUND! **');
-          console.error(banner);
-          console.error(`  Target   : ${TARGET}`);
-          console.error(`  Password : ${foundPassword}`);
-          console.error(`  Attempts : ${attempt}`);
-          console.error(`  Elapsed  : ${elapsed}s`);
-          console.error(`  User     : ${user ? JSON.stringify(user) : 'n/a'}`);
-          console.error(banner);
+          console.error(border);
+          console.error(pad(''));
+          console.error(pad('🎉  パスワードが見つかりました！  🎉'));
+          console.error(pad(''));
+          console.error(border);
+          console.error('');
+          console.error('┌─────────────────────────────────────────────────────┐');
+          console.error(`│  👤 ユーザー名  ：  ${TARGET!.padEnd(30)} │`);
+          console.error(`│  🔑 パスワード  ：  ${foundPassword!.padEnd(30)} │`);
+          console.error('├─────────────────────────────────────────────────────┤');
+          console.error(`│  🔢 試行回数    ：  ${String(attempt).padEnd(30)} │`);
+          console.error(`│  ⏱  経過時間    ：  ${(elapsed + '秒').padEnd(30)} │`);
+          console.error(`│  👥 ユーザー情報：  ${(user ? JSON.stringify(user) : 'なし').substring(0, 30).padEnd(30)} │`);
+          console.error('└─────────────────────────────────────────────────────┘');
+          console.error('');
           console.error('');
 
           // JSON ログ（stdout）
@@ -224,16 +238,29 @@ async function main(): Promise<void> {
     });
   }
 
-  log({
-    event: 'end',
-    target: TARGET,
-    total_attempts: attempt,
-    skipped_lines: skipped,
-    elapsed_sec: parseFloat(elapsed),
-    rate_per_sec: attempt > 0 ? parseFloat((attempt / parseFloat(elapsed)).toFixed(1)) : 0,
-    result: found ? 'found' : 'not_found',
-    ...(found ? { password: foundPassword } : {}),
-  });
+  if (found) {
+    log({
+      event: 'end',
+      result: '!!!!! PASSWORD FOUND !!!!!',
+      target: TARGET,
+      password: `>>>  ${foundPassword}  <<<`,
+      total_attempts: attempt,
+      elapsed_sec: parseFloat(elapsed),
+      rate_per_sec: attempt > 0 ? parseFloat((attempt / parseFloat(elapsed)).toFixed(1)) : 0,
+      message: `パスワードが見つかりました！ ユーザー「${TARGET}」のパスワードは「${foundPassword}」です`,
+    });
+  } else {
+    log({
+      event: 'end',
+      result: 'not_found',
+      target: TARGET,
+      total_attempts: attempt,
+      skipped_lines: skipped,
+      elapsed_sec: parseFloat(elapsed),
+      rate_per_sec: attempt > 0 ? parseFloat((attempt / parseFloat(elapsed)).toFixed(1)) : 0,
+      message: 'パスワードは見つかりませんでした',
+    });
+  }
 }
 
 main().catch((err) => {
