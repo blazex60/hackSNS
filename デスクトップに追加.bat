@@ -22,7 +22,7 @@ if not exist "%PROJECT_DIR%\server.bat" (
 )
 
 REM npm install を実行
-echo [1/2] npm install を実行しています...
+echo [1/3] npm install を実行しています...
 pushd "%PROJECT_DIR%"
 call npm install
 if %errorlevel% neq 0 (
@@ -32,11 +32,23 @@ if %errorlevel% neq 0 (
     pause
     exit /b 1
 )
+echo.
+
+REM npm run build を実行
+echo [2/3] npm run build を実行しています...
+call npm run build
+if %errorlevel% neq 0 (
+    echo.
+    echo [エラー] npm run build に失敗しました。
+    popd
+    pause
+    exit /b 1
+)
 popd
 echo.
 
 REM PowerShell でデスクトップパスを取得してショートカットを作成
-echo [2/2] デスクトップにショートカットを作成しています...
+echo [3/3] デスクトップにショートカットを作成しています...
 powershell -NoProfile -Command ^
   "$desktop = [System.Environment]::GetFolderPath('Desktop');" ^
   "$shortcutPath = Join-Path $desktop 'server.lnk';" ^

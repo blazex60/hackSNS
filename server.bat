@@ -8,7 +8,7 @@ echo ========================================
 echo.
 
 REM 開発サーバーを別ウィンドウで起動
-start "hackSNS Dev Server" cmd /k "cd /d "%~dp0" && npm run dev"
+start "hackSNS Dev Server" cmd /k "cd /d "%~dp0" && npm start"
 
 REM サーバーの起動を待機（5秒）
 echo ブラウザを開くまで少々お待ちください...

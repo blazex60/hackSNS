@@ -17,11 +17,11 @@ db.exec(schema);
 
 // 初期データ: ユーザー
 const insertUser = db.prepare('INSERT OR IGNORE INTO users (id, username, password, display_name, bio, avatar_url) VALUES (?, ?, ?, ?, ?, ?)');
-insertUser.run(1, 'admin', 'password123', 'Admin User', 'システム管理者です', '/avatars/admin.png');
-insertUser.run(2, 'user', 'test456', 'Test User', 'テストユーザーです', '/avatars/user.png');
-insertUser.run(3, 'alice', 'alice123', 'Alice', '写真が好きです📷', '/avatars/alice.png');
-insertUser.run(4, 'bob', 'bob456', 'Bob', '旅行と料理が趣味です🌍🍳', '/avatars/bob.png');
-insertUser.run(5, 'charlie', 'charlie789', 'Charlie', 'プログラマーです💻', '/avatars/charlie.png');
+insertUser.run(1, 'admin', 'princess', 'Admin User', 'システム管理者です', '/avatars/admin.png');
+insertUser.run(2, 'Take', '6824', 'Take', 'デザイナーです🎨', '/avatars/user.png');
+insertUser.run(3, 'alice', 'ar94', 'Alice', '写真が好きです📷', '/avatars/alice.png');
+insertUser.run(4, 'bob', '8Fk7', 'Bob', '旅行と料理が趣味です🌍🍳', '/avatars/bob.png');
+insertUser.run(5, 'chris', 'T9@a', 'chris', 'プログラマーです💻', '/avatars/charlie.png');
 
 // 初期データ: 投稿
 const insertPost = db.prepare('INSERT OR IGNORE INTO posts (id, user_id, content, image_url, created_at) VALUES (?, ?, ?, ?, ?)');

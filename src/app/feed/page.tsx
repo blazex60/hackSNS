@@ -1,6 +1,10 @@
 import Link from "next/link";
 import styles from "./feed.module.css";
 
+const randomColor = () => `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}`;
+const storyColors = [...Array(8)].map(() => randomColor());
+const suggestionColors = [...Array(5)].map(() => randomColor());
+
 export default function FeedPage() {
   const suggestions = [
     { name: "kenoere", reason: "Followed by heych2002 + 7 more" },
@@ -47,7 +51,7 @@ export default function FeedPage() {
               {[...Array(8)].map((_, i) => (
                 <div key={i} className={styles.storyItem}>
                   <div className={styles.storyAvatarBorder}>
-                    <div className={styles.storyAvatar} style={{backgroundColor: `#${Math.floor(Math.random()*16777215).toString(16)}`}}></div>
+                    <div className={styles.storyAvatar} style={{backgroundColor: storyColors[i]}}></div>
                   </div>
                   <span className={styles.storyName}>user_{i+1}</span>
                 </div>
@@ -150,7 +154,7 @@ export default function FeedPage() {
               {suggestions.map((user, i) => (
                 <div key={i} className={styles.suggestionItem}>
                    <div className={styles.userInfo}>
-                      <div className={styles.suggAvatar} style={{backgroundColor: `#${Math.floor(Math.random()*16777215).toString(16)}`}}></div>
+                      <div className={styles.suggAvatar} style={{backgroundColor: suggestionColors[i]}}></div>
                       <div className={styles.suggInfo}>
                         <span className={styles.suggUsername}>{user.name}</span>
                         <span className={styles.suggReason}>{user.reason}</span>
