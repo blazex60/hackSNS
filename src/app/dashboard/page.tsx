@@ -2,8 +2,10 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import PostCard from '@/components/PostCard';
 import styles from './dashboard.module.css';
+import { getSession, logoutAction } from '@/server/actions/auth-actions';
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const session = await getSession();
   // モックデータ - 実際にはデータベースから取得
   const posts = [
     {
@@ -48,7 +50,7 @@ export default function DashboardPage() {
 
   return (
     <div className={styles.container}>
-      <Header username="admin" />
+      <Header username={session?.username ?? 'guest'} />
 
       <main className={styles.main}>
         {/* 左サイドバー */}
@@ -75,6 +77,12 @@ export default function DashboardPage() {
               <span>⚙️</span>
               <span>設定</span>
             </Link>
+            <form action={logoutAction}>
+              <button type="submit" className={styles.menuItem} style={{ background: 'none', border: 'none', cursor: 'pointer', width: '100%', textAlign: 'left' }}>
+                <span>🚪</span>
+                <span>ログアウト</span>
+              </button>
+            </form>
           </div>
 
           <div className={styles.warningBanner}>
