@@ -137,23 +137,69 @@
   color: #718096;
 }
 
-.warningBanner {
-  background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%);
-  color: #7c2d12;
-  padding: 16px 20px;
+.warningBadge {
+  display: inline-block;
+  background: #fefcbf;
+  color: #744210;
+  border: 1px solid #f6ad55;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.attackCard {
+  background: white;
   border-radius: 12px;
-  margin-bottom: 16px;
-  border: 2px solid #ea580c;
+  border: 1px solid #e2e8f0;
+  padding: 20px;
 }
 
-.warningBanner h3 {
-  margin: 0 0 8px 0;
-  font-size: 15px;
-  font-weight: 700;
+.codeBlock {
+  background: #1a202c;
+  color: #68d391;
+  font-family: monospace;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 8px;
 }
 
-.warningBanner p {
-  margin: 0;
+.codeLine {
+  font-size: 12px;
+  line-height: 1.8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.accountList {
+  margin-top: 8px;
+}
+
+.accountItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f7fafc;
   font-size: 13px;
-  line-height: 1.5;
+}
+
+.accountItem:last-child {
+  border-bottom: none;
+}
+
+.accountUser {
+  font-weight: 600;
+  color: #667eea;
+}
+
+.accountPass {
+  font-family: monospace;
+  color: #48bb78;
+  background: #f0fff4;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
 }

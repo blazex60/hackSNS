@@ -25,8 +25,8 @@ db.exec(schema);
 const userCount = (db.prepare('SELECT COUNT(*) as cnt FROM users').get() as { cnt: number }).cnt;
 if (userCount === 0) {
   const insertUser = db.prepare('INSERT OR REPLACE INTO users (id, username, password, display_name, bio, avatar_url) VALUES (?, ?, ?, ?, ?, ?)');
-  insertUser.run(1, 'admin', 'princess', 'Admin User', 'システム管理者です', '/avatars/admin.png');
-  insertUser.run(2, 'take', '6824', 'take', 'デザイナーです🎨', '/avatars/user.png');
+  insertUser.run(1, 'admin', 'rabbit', 'Admin User', 'システム管理者です', '/avatars/admin.png');
+  insertUser.run(2, 'take', '1234', 'take', 'デザイナーです🎨', '/avatars/user.png');
   insertUser.run(3, 'alice', 'ar94', 'Alice', '写真が好きです📷', '/avatars/alice.png');
   insertUser.run(4, 'bob', '8Fk7', 'Bob', '旅行と料理が趣味です🌍🍳', '/avatars/bob.png');
   insertUser.run(5, 'chris', 'T9@a', 'chris', 'プログラマーです💻', '/avatars/charlie.png');

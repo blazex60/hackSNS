@@ -1,83 +1,108 @@
 .header {
   background: white;
-  border-bottom: 1px solid #e2e8f0;
-  padding: 0 24px;
+  border-bottom: 1px solid #dbdbdb;
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
 .headerContent {
-  max-width: 1200px;
+  max-width: 975px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
+  height: 60px;
+  padding: 0 20px;
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 24px;
-  font-weight: 700;
-  color: #667eea;
+  font-family: 'Georgia', serif;
+  font-size: 1.6rem;
+  font-weight: normal;
+  color: #262626;
   text-decoration: none;
+  letter-spacing: -0.5px;
+  flex-shrink: 0;
 }
 
-.logoIcon {
-  font-size: 28px;
+.searchBar {
+  display: flex;
+  align-items: center;
+  background: #efefef;
+  border-radius: 8px;
+  padding: 7px 16px;
+  width: 268px;
+  gap: 8px;
+  cursor: text;
+}
+
+.searchIcon {
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+.searchText {
+  color: #8e8e8e;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .searchBar {
+    display: none;
+  }
 }
 
 .nav {
   display: flex;
-  gap: 32px;
   align-items: center;
+  gap: 22px;
 }
 
-.navLink {
-  color: #4a5568;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s;
-}
-
-.navLink:hover {
-  color: #667eea;
-}
-
-.userSection {
+.navIconLink {
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.15s;
+}
+
+.navIconLink:hover {
+  opacity: 0.5;
 }
 
 .avatar {
-  width: 36px;
-  height: 36px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 11px;
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .logoutButton {
-  padding: 8px 16px;
-  background: transparent;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  color: #4a5568;
-  font-weight: 500;
+  background: none;
+  border: none;
+  color: #8e8e8e;
+  font-size: 12px;
   cursor: pointer;
-  transition: all 0.2s;
+  padding: 0;
+  transition: color 0.15s;
 }
 
 .logoutButton:hover {
-  background: #f7fafc;
-  border-color: #cbd5e0;
+  color: #262626;
 }

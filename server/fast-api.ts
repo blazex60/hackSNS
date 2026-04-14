@@ -45,7 +45,7 @@ function checkPortAvailable(port: number): Promise<void> {
   return new Promise((resolve, reject) => {
     const probe = http.createServer();
     probe.once('error', reject);
-    probe.once('listening', () => probe.close(resolve));
+    probe.once('listening', () => probe.close(() => resolve()));
     probe.listen(port);
   });
 }

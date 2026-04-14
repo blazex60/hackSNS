@@ -1,0 +1,33 @@
+{
+  "title": "Server Action エラー修正と全ページ動作確認",
+  "stories": [
+    {
+      "id": "US-001",
+      "title": "auth-actions.ts から非async関数の re-export を削除",
+      "passes": true,
+      "acceptanceCriteria": [
+        "auth-actions.ts の export { buildSessionCookie, clearSessionCookie } が削除されている ✅",
+        "auth-actions.ts の全 export が async function のみである ✅",
+        "buildSessionCookie/clearSessionCookie を auth-actions 経由で import しているコードが存在しない ✅"
+      ]
+    },
+    {
+      "id": "US-002",
+      "title": "npm run build がエラーなしで通過する",
+      "passes": true,
+      "acceptanceCriteria": [
+        "npm run build が TypeScript エラーなしで完了する ✅",
+        "全9ルートが正常に生成される ✅"
+      ]
+    },
+    {
+      "id": "US-003",
+      "title": "Header.tsx の logoutAction が安全に動作する",
+      "passes": true,
+      "acceptanceCriteria": [
+        "Header.tsx が 'use client' のまま logoutAction を使用できる ✅",
+        "logoutAction は auth-actions.ts の async 関数として正しく定義されている ✅"
+      ]
+    }
+  ]
+}

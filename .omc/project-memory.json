@@ -1,0 +1,381 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1776131998477,
+  "projectRoot": "/home/mitsu/Documents/hackSNS",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "tsconfig.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "next",
+        "version": "16.2.3",
+        "category": "fullstack"
+      },
+      {
+        "name": "react",
+        "version": "19.2.3",
+        "category": "frontend"
+      },
+      {
+        "name": "react-dom",
+        "version": "19.2.3",
+        "category": "frontend"
+      }
+    ],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "npm run build",
+    "testCommand": null,
+    "lintCommand": "npm run lint",
+    "devCommand": "npm run dev",
+    "scripts": {
+      "dev": "next dev",
+      "build": "next build",
+      "start": "next start",
+      "lint": "eslint",
+      "attack": "tsx tools/dictionary-attack.ts --target admin",
+      "brute": "tsx tools/brute-force.ts",
+      "brute:lownm": "tsx tools/brute-force.ts --charset lownm --target alice",
+      "brute:alnum": "tsx tools/brute-force.ts --charset alnum --target bob",
+      "fast-api": "tsx server/fast-api.ts",
+      "attack:fast": "tsx tools/dictionary-attack.ts --url http://localhost:3001",
+      "brute:fast": "tsx tools/brute-force.ts --url http://localhost:3001"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": "type-based"
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "public",
+      "src"
+    ],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "public": {
+      "path": "public",
+      "purpose": "Public files",
+      "fileCount": 5,
+      "lastAccessed": 1776131998464,
+      "keyFiles": [
+        "file.svg",
+        "globe.svg",
+        "next.svg",
+        "vercel.svg",
+        "window.svg"
+      ]
+    },
+    "server": {
+      "path": "server",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1776131998465,
+      "keyFiles": [
+        "fast-api.ts"
+      ]
+    },
+    "src": {
+      "path": "src",
+      "purpose": "Source code",
+      "fileCount": 0,
+      "lastAccessed": 1776131998471,
+      "keyFiles": []
+    },
+    "state": {
+      "path": "state",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1776131998474,
+      "keyFiles": [
+        "cancel-signal-state.json"
+      ]
+    },
+    "tools": {
+      "path": "tools",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1776131998474,
+      "keyFiles": [
+        "brute-force.ts",
+        "dictionary-attack.ts"
+      ]
+    },
+    "server/data": {
+      "path": "server/data",
+      "purpose": "Data files",
+      "fileCount": 3,
+      "lastAccessed": 1776131998475,
+      "keyFiles": [
+        "app.db",
+        "app.db-shm",
+        "app.db-wal"
+      ]
+    },
+    "server/utils": {
+      "path": "server/utils",
+      "purpose": "Utility functions",
+      "fileCount": 1,
+      "lastAccessed": 1776131998475,
+      "keyFiles": [
+        "helpers.ts"
+      ]
+    },
+    "src/app": {
+      "path": "src/app",
+      "purpose": "Application code",
+      "fileCount": 5,
+      "lastAccessed": 1776131998475,
+      "keyFiles": [
+        "favicon.ico",
+        "globals.css",
+        "layout.tsx"
+      ]
+    },
+    "src/components": {
+      "path": "src/components",
+      "purpose": "UI components",
+      "fileCount": 4,
+      "lastAccessed": 1776131998475,
+      "keyFiles": [
+        "Header.module.css",
+        "Header.tsx",
+        "PostCard.module.css"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "",
+      "accessCount": 14,
+      "lastAccessed": 1775987087668,
+      "type": "directory"
+    },
+    {
+      "path": "server/actions/auth-actions.ts",
+      "accessCount": 11,
+      "lastAccessed": 1775987141336,
+      "type": "file"
+    },
+    {
+      "path": "src/app/feed/page.tsx",
+      "accessCount": 11,
+      "lastAccessed": 1775987434541,
+      "type": "file"
+    },
+    {
+      "path": "src/app/dashboard/page.tsx",
+      "accessCount": 7,
+      "lastAccessed": 1775986218827,
+      "type": "file"
+    },
+    {
+      "path": "src/components/Header.tsx",
+      "accessCount": 7,
+      "lastAccessed": 1775987421000,
+      "type": "file"
+    },
+    {
+      "path": "src/app/page.tsx",
+      "accessCount": 5,
+      "lastAccessed": 1775986217701,
+      "type": "file"
+    },
+    {
+      "path": "src/components/Header.module.css",
+      "accessCount": 5,
+      "lastAccessed": 1775987425997,
+      "type": "file"
+    },
+    {
+      "path": "src/app/page.module.css",
+      "accessCount": 3,
+      "lastAccessed": 1775985856371,
+      "type": "file"
+    },
+    {
+      "path": "src/components/PostCard.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1775985863781,
+      "type": "file"
+    },
+    {
+      "path": "src/app/layout.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1775985870555,
+      "type": "file"
+    },
+    {
+      "path": "src/app/feed/feed.module.css",
+      "accessCount": 3,
+      "lastAccessed": 1775985903326,
+      "type": "file"
+    },
+    {
+      "path": "src/app/dashboard/dashboard.module.css",
+      "accessCount": 3,
+      "lastAccessed": 1775985948913,
+      "type": "file"
+    },
+    {
+      "path": "tsconfig.json",
+      "accessCount": 3,
+      "lastAccessed": 1775986463839,
+      "type": "file"
+    },
+    {
+      "path": "server/auth/session.ts",
+      "accessCount": 3,
+      "lastAccessed": 1775987083162,
+      "type": "file"
+    },
+    {
+      "path": "server/fast-api.ts",
+      "accessCount": 2,
+      "lastAccessed": 1775985171707,
+      "type": "file"
+    },
+    {
+      "path": "server/db/database.ts",
+      "accessCount": 2,
+      "lastAccessed": 1775985174139,
+      "type": "file"
+    },
+    {
+      "path": "server/auth/login.ts",
+      "accessCount": 2,
+      "lastAccessed": 1775985182044,
+      "type": "file"
+    },
+    {
+      "path": "src/components/PostCard.module.css",
+      "accessCount": 2,
+      "lastAccessed": 1775985831835,
+      "type": "file"
+    },
+    {
+      "path": "CLAUDE.md",
+      "accessCount": 2,
+      "lastAccessed": 1775986230188,
+      "type": "file"
+    },
+    {
+      "path": "src/app/login/page.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1775986435599,
+      "type": "file"
+    },
+    {
+      "path": "tools/brute-force.ts",
+      "accessCount": 1,
+      "lastAccessed": 1775983620602,
+      "type": "file"
+    },
+    {
+      "path": "src/app/api/route.ts",
+      "accessCount": 1,
+      "lastAccessed": 1775983720811,
+      "type": "file"
+    },
+    {
+      "path": "package.json",
+      "accessCount": 1,
+      "lastAccessed": 1775985152137,
+      "type": "file"
+    },
+    {
+      "path": "README.md",
+      "accessCount": 1,
+      "lastAccessed": 1775985162077,
+      "type": "file"
+    },
+    {
+      "path": "eslint.config.mjs",
+      "accessCount": 1,
+      "lastAccessed": 1775985171375,
+      "type": "file"
+    },
+    {
+      "path": "server/db/schema.sql",
+      "accessCount": 1,
+      "lastAccessed": 1775985174346,
+      "type": "file"
+    },
+    {
+      "path": "next.config.ts",
+      "accessCount": 1,
+      "lastAccessed": 1775985174575,
+      "type": "file"
+    },
+    {
+      "path": "middleware.ts",
+      "accessCount": 1,
+      "lastAccessed": 1775985174686,
+      "type": "file"
+    },
+    {
+      "path": "server/utils/helpers.ts",
+      "accessCount": 1,
+      "lastAccessed": 1775985182568,
+      "type": "file"
+    },
+    {
+      "path": "CLAUDE.local.md",
+      "accessCount": 1,
+      "lastAccessed": 1775985501902,
+      "type": "file"
+    },
+    {
+      "path": "src/app/globals.css",
+      "accessCount": 1,
+      "lastAccessed": 1775985658579,
+      "type": "file"
+    },
+    {
+      "path": "src/app/login/login.module.css",
+      "accessCount": 1,
+      "lastAccessed": 1775985661649,
+      "type": "file"
+    },
+    {
+      "path": "src/app/profile/page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1775985664725,
+      "type": "file"
+    },
+    {
+      "path": "src/app/profile/profile.module.css",
+      "accessCount": 1,
+      "lastAccessed": 1775985664922,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

@@ -1,5 +1,5 @@
-import styles from './PostCard.module.css';
 import Image from 'next/image';
+import styles from './PostCard.module.css';
 
 interface PostCardProps {
   displayName: string;
@@ -21,47 +21,70 @@ export default function PostCard({
   imageUrl,
 }: PostCardProps) {
   return (
-    <div className={styles.postCard}>
+    <article className={styles.postCard}>
+      {/* ヘッダー */}
       <div className={styles.postHeader}>
-        <div className={styles.avatar}>
-          {displayName.charAt(0).toUpperCase()}
-        </div>
         <div className={styles.userInfo}>
-          <p className={styles.displayName}>{displayName}</p>
-          <p className={styles.username}>@{username}</p>
+          <div className={styles.avatarRing}>
+            <div className={styles.avatar}>
+              {displayName.charAt(0).toUpperCase()}
+            </div>
+          </div>
+          <span className={styles.username}>{username}</span>
         </div>
-        <span className={styles.timestamp}>{timestamp}</span>
+        <button className={styles.moreButton} aria-label="その他">
+          <Image src="/icon-more.svg" alt="その他" width={20} height={20} />
+        </button>
       </div>
 
-      <div className={styles.postContent}>{content}</div>
-
-      {imageUrl && (
+      {/* 画像 */}
+      {imageUrl ? (
         <Image
           src={imageUrl}
           alt="投稿画像"
           className={styles.postImage}
           width={600}
-          height={400}
+          height={600}
           style={{ objectFit: 'cover' }}
         />
+      ) : (
+        <div className={styles.postImagePlaceholder} />
       )}
 
-      <div className={styles.postActions}>
-        <button className={styles.actionButton}>
-          <span>💬</span>
-          <span>{comments}</span>
-        </button>
-        <button className={styles.actionButton}>
-          <span>❤️</span>
-          <span>{likes}</span>
-        </button>
-        <button className={styles.actionButton}>
-          <span>🔄</span>
-        </button>
-        <button className={styles.actionButton}>
-          <span>📤</span>
-        </button>
+      {/* フッター */}
+      <div className={styles.postFooter}>
+        <div className={styles.actionButtons}>
+          <div className={styles.leftActions}>
+            <button className={styles.actionButton} aria-label="いいね">
+              <Image src="/icon-heart.svg" alt="いいね" width={24} height={24} />
+            </button>
+            <button className={styles.actionButton} aria-label="コメント">
+              <Image src="/icon-comment.svg" alt="コメント" width={24} height={24} />
+            </button>
+            <button className={styles.actionButton} aria-label="シェア">
+              <Image src="/icon-share.svg" alt="シェア" width={24} height={24} />
+            </button>
+          </div>
+          <button className={styles.actionButton} aria-label="保存">
+            <Image src="/icon-bookmark.svg" alt="保存" width={24} height={24} />
+          </button>
+        </div>
+
+        <span className={styles.likes}>{likes.toLocaleString()} likes</span>
+
+        <div className={styles.caption}>
+          <span className={styles.captionUser}>{username}</span>
+          {content}
+        </div>
+
+        {comments > 0 && (
+          <button className={styles.commentsLink}>
+            {comments}件のコメントをすべて見る
+          </button>
+        )}
+
+        <time className={styles.time}>{timestamp}</time>
       </div>
-    </div>
+    </article>
   );
 }

@@ -1,0 +1,6 @@
+npm run brute -- --target take
+npm run brute -- --target alice --setchar lownm
+npm run brute -- --target bob --setchar alnum
+npm run brute -- --target chris --setchar strong
+
+npm run attack -- --target admin
