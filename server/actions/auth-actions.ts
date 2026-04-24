@@ -7,10 +7,18 @@ import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 
 export async function loginAction(formData: FormData): Promise<void> {
-  const username = formData.get('username') as string;
-  const password = formData.get('password') as string;
+  const username = formData.get('username');
+  const password = formData.get('password');
+  
+  // 入力フィールド必須チェック
+  if (!username || !password) {
+    redirect('/login?error=missing-fields');
+  }
+  
+  const usernameStr = String(username);
+  const passwordStr = String(password);
 
-  const user = vulnerableLogin(username, password) as Record<string, unknown> | null | undefined;
+  const user = vulnerableLogin(usernameStr, passwordStr) as Record<string, unknown> | null | undefined;
 
   if (user) {
     const token = await createSessionToken({

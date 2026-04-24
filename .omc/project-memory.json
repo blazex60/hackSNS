@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1776131998477,
+  "lastScanned": 1777014920519,
   "projectRoot": "/home/mitsu/Documents/hackSNS",
   "techStack": {
     "languages": [
@@ -83,37 +83,40 @@
     "public": {
       "path": "public",
       "purpose": "Public files",
-      "fileCount": 5,
-      "lastAccessed": 1776131998464,
+      "fileCount": 21,
+      "lastAccessed": 1777014920506,
       "keyFiles": [
+        "AGENTS.md",
+        "akar-icons--paper-airplane.svg",
         "file.svg",
         "globe.svg",
-        "next.svg",
-        "vercel.svg",
-        "window.svg"
+        "hugeicons--repost.svg"
       ]
     },
     "server": {
       "path": "server",
       "purpose": null,
-      "fileCount": 1,
-      "lastAccessed": 1776131998465,
+      "fileCount": 2,
+      "lastAccessed": 1777014920507,
       "keyFiles": [
+        "AGENTS.md",
         "fast-api.ts"
       ]
     },
     "src": {
       "path": "src",
       "purpose": "Source code",
-      "fileCount": 0,
-      "lastAccessed": 1776131998471,
-      "keyFiles": []
+      "fileCount": 1,
+      "lastAccessed": 1777014920513,
+      "keyFiles": [
+        "AGENTS.md"
+      ]
     },
     "state": {
       "path": "state",
       "purpose": null,
       "fileCount": 1,
-      "lastAccessed": 1776131998474,
+      "lastAccessed": 1777014920516,
       "keyFiles": [
         "cancel-signal-state.json"
       ]
@@ -121,9 +124,10 @@
     "tools": {
       "path": "tools",
       "purpose": null,
-      "fileCount": 2,
-      "lastAccessed": 1776131998474,
+      "fileCount": 3,
+      "lastAccessed": 1777014920517,
       "keyFiles": [
+        "AGENTS.md",
         "brute-force.ts",
         "dictionary-attack.ts"
       ]
@@ -132,7 +136,7 @@
       "path": "server/data",
       "purpose": "Data files",
       "fileCount": 3,
-      "lastAccessed": 1776131998475,
+      "lastAccessed": 1777014920517,
       "keyFiles": [
         "app.db",
         "app.db-shm",
@@ -142,238 +146,125 @@
     "server/utils": {
       "path": "server/utils",
       "purpose": "Utility functions",
-      "fileCount": 1,
-      "lastAccessed": 1776131998475,
+      "fileCount": 2,
+      "lastAccessed": 1777014920518,
       "keyFiles": [
+        "AGENTS.md",
         "helpers.ts"
       ]
     },
     "src/app": {
       "path": "src/app",
       "purpose": "Application code",
-      "fileCount": 5,
-      "lastAccessed": 1776131998475,
+      "fileCount": 7,
+      "lastAccessed": 1777014920518,
       "keyFiles": [
+        "AGENTS.md",
         "favicon.ico",
-        "globals.css",
-        "layout.tsx"
+        "globals.css"
       ]
     },
     "src/components": {
       "path": "src/components",
       "purpose": "UI components",
-      "fileCount": 4,
-      "lastAccessed": 1776131998475,
+      "fileCount": 8,
+      "lastAccessed": 1777014920518,
       "keyFiles": [
-        "Header.module.css",
-        "Header.tsx",
-        "PostCard.module.css"
+        "AGENTS.md",
+        "AppShell.tsx",
+        "Header.module.css"
       ]
     }
   },
   "hotPaths": [
     {
-      "path": "",
-      "accessCount": 14,
-      "lastAccessed": 1775987087668,
-      "type": "directory"
-    },
-    {
-      "path": "server/actions/auth-actions.ts",
-      "accessCount": 11,
-      "lastAccessed": 1775987141336,
-      "type": "file"
-    },
-    {
-      "path": "src/app/feed/page.tsx",
-      "accessCount": 11,
-      "lastAccessed": 1775987434541,
-      "type": "file"
-    },
-    {
-      "path": "src/app/dashboard/page.tsx",
-      "accessCount": 7,
-      "lastAccessed": 1775986218827,
-      "type": "file"
-    },
-    {
-      "path": "src/components/Header.tsx",
-      "accessCount": 7,
-      "lastAccessed": 1775987421000,
-      "type": "file"
-    },
-    {
-      "path": "src/app/page.tsx",
-      "accessCount": 5,
-      "lastAccessed": 1775986217701,
-      "type": "file"
-    },
-    {
-      "path": "src/components/Header.module.css",
-      "accessCount": 5,
-      "lastAccessed": 1775987425997,
-      "type": "file"
-    },
-    {
-      "path": "src/app/page.module.css",
+      "path": "server.bat",
       "accessCount": 3,
-      "lastAccessed": 1775985856371,
+      "lastAccessed": 1777015244889,
       "type": "file"
     },
     {
-      "path": "src/components/PostCard.tsx",
+      "path": "README.md",
       "accessCount": 3,
-      "lastAccessed": 1775985863781,
+      "lastAccessed": 1777015246730,
       "type": "file"
     },
     {
-      "path": "src/app/layout.tsx",
-      "accessCount": 3,
-      "lastAccessed": 1775985870555,
-      "type": "file"
-    },
-    {
-      "path": "src/app/feed/feed.module.css",
-      "accessCount": 3,
-      "lastAccessed": 1775985903326,
-      "type": "file"
-    },
-    {
-      "path": "src/app/dashboard/dashboard.module.css",
-      "accessCount": 3,
-      "lastAccessed": 1775985948913,
-      "type": "file"
-    },
-    {
-      "path": "tsconfig.json",
-      "accessCount": 3,
-      "lastAccessed": 1775986463839,
-      "type": "file"
-    },
-    {
-      "path": "server/auth/session.ts",
-      "accessCount": 3,
-      "lastAccessed": 1775987083162,
-      "type": "file"
-    },
-    {
-      "path": "server/fast-api.ts",
+      "path": "デスクトップに追加.bat",
       "accessCount": 2,
-      "lastAccessed": 1775985171707,
-      "type": "file"
-    },
-    {
-      "path": "server/db/database.ts",
-      "accessCount": 2,
-      "lastAccessed": 1775985174139,
-      "type": "file"
-    },
-    {
-      "path": "server/auth/login.ts",
-      "accessCount": 2,
-      "lastAccessed": 1775985182044,
-      "type": "file"
-    },
-    {
-      "path": "src/components/PostCard.module.css",
-      "accessCount": 2,
-      "lastAccessed": 1775985831835,
-      "type": "file"
-    },
-    {
-      "path": "CLAUDE.md",
-      "accessCount": 2,
-      "lastAccessed": 1775986230188,
-      "type": "file"
-    },
-    {
-      "path": "src/app/login/page.tsx",
-      "accessCount": 2,
-      "lastAccessed": 1775986435599,
-      "type": "file"
-    },
-    {
-      "path": "tools/brute-force.ts",
-      "accessCount": 1,
-      "lastAccessed": 1775983620602,
-      "type": "file"
-    },
-    {
-      "path": "src/app/api/route.ts",
-      "accessCount": 1,
-      "lastAccessed": 1775983720811,
+      "lastAccessed": 1777015252106,
       "type": "file"
     },
     {
       "path": "package.json",
       "accessCount": 1,
-      "lastAccessed": 1775985152137,
+      "lastAccessed": 1777014992701,
       "type": "file"
     },
     {
-      "path": "README.md",
+      "path": ".docker/docker-compose.yml",
       "accessCount": 1,
-      "lastAccessed": 1775985162077,
+      "lastAccessed": 1777014996099,
       "type": "file"
     },
     {
-      "path": "eslint.config.mjs",
+      "path": "server/fast-api.ts",
       "accessCount": 1,
-      "lastAccessed": 1775985171375,
-      "type": "file"
-    },
-    {
-      "path": "server/db/schema.sql",
-      "accessCount": 1,
-      "lastAccessed": 1775985174346,
+      "lastAccessed": 1777014996116,
       "type": "file"
     },
     {
       "path": "next.config.ts",
       "accessCount": 1,
-      "lastAccessed": 1775985174575,
+      "lastAccessed": 1777014996924,
       "type": "file"
     },
     {
-      "path": "middleware.ts",
+      "path": "server/db/database.ts",
       "accessCount": 1,
-      "lastAccessed": 1775985174686,
+      "lastAccessed": 1777014997144,
       "type": "file"
     },
     {
-      "path": "server/utils/helpers.ts",
+      "path": "src/app/api/route.ts",
       "accessCount": 1,
-      "lastAccessed": 1775985182568,
+      "lastAccessed": 1777015082293,
       "type": "file"
     },
     {
-      "path": "CLAUDE.local.md",
+      "path": ".dockerignore",
       "accessCount": 1,
-      "lastAccessed": 1775985501902,
+      "lastAccessed": 1777015097123,
       "type": "file"
     },
     {
-      "path": "src/app/globals.css",
+      "path": "server/db/init.ts",
       "accessCount": 1,
-      "lastAccessed": 1775985658579,
+      "lastAccessed": 1777015097291,
       "type": "file"
     },
     {
-      "path": "src/app/login/login.module.css",
+      "path": "Dockerfile",
       "accessCount": 1,
-      "lastAccessed": 1775985661649,
+      "lastAccessed": 1777015108549,
       "type": "file"
     },
     {
-      "path": "src/app/profile/page.tsx",
+      "path": "Dockerfile.backend",
       "accessCount": 1,
-      "lastAccessed": 1775985664725,
+      "lastAccessed": 1777015109243,
       "type": "file"
     },
     {
-      "path": "src/app/profile/profile.module.css",
+      "path": "Dockerfile.db",
       "accessCount": 1,
-      "lastAccessed": 1775985664922,
+      "lastAccessed": 1777015110543,
+      "type": "file"
+    },
+    {
+      "path": "docker-compose.yml",
+      "accessCount": 1,
+      "lastAccessed": 1777015112812,
       "type": "file"
     }
   ],

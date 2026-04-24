@@ -30,11 +30,12 @@ export default function PostCard({
               {displayName.charAt(0).toUpperCase()}
             </div>
           </div>
-          <span className={styles.username}>{username}</span>
+          <div className={styles.userMeta}>
+            <span className={styles.displayName}>{displayName}</span>
+            <span className={styles.headerTime}>{timestamp}</span>
+          </div>
         </div>
-        <button className={styles.moreButton} aria-label="その他">
-          <Image src="/icon-more.svg" alt="その他" width={20} height={20} />
-        </button>
+        <button className={styles.wishlistButton}>Wishlistに追加</button>
       </div>
 
       {/* 画像 */}
@@ -82,8 +83,6 @@ export default function PostCard({
             {comments}件のコメントをすべて見る
           </button>
         )}
-
-        <time className={styles.time}>{timestamp}</time>
       </div>
     </article>
   );

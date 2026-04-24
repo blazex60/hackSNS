@@ -1,0 +1,29 @@
+/* サイドバーあり（フィード等） */
+.appLayoutWithSidebar {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* サイドバーなし（ログイン・トップ等） */
+.appLayoutFull {
+  min-height: 100vh;
+}
+
+.mainContent {
+  flex: 1;
+  margin-left: 250px;
+  min-height: 100vh;
+  background: #fafafa;
+}
+
+.mainFull {
+  flex: 1;
+  min-height: 100vh;
+}
+
+@media (max-width: 767px) {
+  .mainContent {
+    margin-left: 0;
+    padding-bottom: 56px; /* ボトムナビ分 */
+  }
+}

@@ -46,30 +46,39 @@
   border: 2px solid white;
 }
 
-.username {
+.userMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.displayName {
   font-weight: 600;
   font-size: 14px;
   color: #262626;
   cursor: pointer;
+  line-height: 1.3;
 }
 
-.username:hover {
+.displayName:hover {
   text-decoration: underline;
 }
 
-.moreButton {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px 8px;
-  display: flex;
-  align-items: center;
-  opacity: 1;
-  transition: opacity 0.15s;
+.headerTime {
+  font-size: 11px;
+  color: #8e8e8e;
 }
 
-.moreButton:hover {
-  opacity: 0.5;
+.wishlistButton {
+  background: none;
+  border: none;
+  color: #0095f6;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 /* 画像 */
@@ -151,18 +160,9 @@
   cursor: pointer;
   padding: 0;
   display: block;
-  margin-bottom: 6px;
   text-align: left;
 }
 
 .commentsLink:hover {
   color: #262626;
-}
-
-.time {
-  font-size: 10px;
-  color: #8e8e8e;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  display: block;
 }

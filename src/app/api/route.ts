@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
         displayName: String(user.display_name),
       });
       const res = NextResponse.json(
-        { success: true, user: { id: user.id, username: user.username, display_name: user.display_name } },
+        { success: true, user: { id: user.id, username: user.username, displayName: String(user.display_name) } },
         { status: 200 }
       );
       res.cookies.set('session', token, {

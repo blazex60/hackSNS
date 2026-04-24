@@ -255,6 +255,7 @@ async function main(): Promise<void> {
   let found         = false;
   let foundPassword: string | null = null;
   let lastPassword  = '';  // 最後に試行したパスワード（setIntervalログ用）
+  let inFlight      = 0;
 
   // ─── 時間ベースのプログレスログ（ホットパスから完全切り離し）─────────────
   // setInterval で独立して動作するため、リクエストループはログ判定コストゼロ
@@ -324,6 +325,7 @@ async function main(): Promise<void> {
       attempt++;
       log({ event: 'request_error', attempt, password, error: String(err) });
     } finally {
+      inFlight = Math.max(0, inFlight - 1);
       sem.release();
     }
   };
@@ -344,11 +346,15 @@ async function main(): Promise<void> {
     queued++;
     await sem.acquire();           // 空きスロットを待つ（バックプレッシャー）
     if (found) { sem.release(); break; }
+    inFlight++;
     void runOne(password);         // fire-and-forget（sem は runOne の finally で解放）
   }
 
-  // 全スロットを再取得 = すべてのワーカーが完了した証明
-  for (let i = 0; i < CONCURRENCY; i++) {
+  // 不変条件: inFlight は sem.acquire 後・runOne 発行直前に ++ され、
+  // runOne の finally で -- される。break 後のここは同期コードなので
+  // スナップショット時点の値が正確な飛行中リクエスト数と一致する。
+  const toWait = inFlight;
+  for (let i = 0; i < toWait; i++) {
     await sem.acquire();
   }
 

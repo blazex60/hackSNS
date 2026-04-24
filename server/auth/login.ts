@@ -2,13 +2,15 @@ import db from '../db/database';
 
 // 脆弱なログイン（SQLi用）
 export function vulnerableLogin(username: string, password: string) {
+  // 【教育用】SQL Injection デモンストレーション
+  // 実運用環境での使用は厳禁！
   const query = `SELECT * FROM users WHERE username='${username}' AND password='${password}'`; // 意図的に脆弱！
   
   try {
     const stmt = db.prepare(query);
     return stmt.get();
   } catch (error) {
-    console.error('SQL Error:', error);
+    console.error('[INTENTIONALLY VULNERABLE] SQL Error:', error);
     return null;
   }
 }

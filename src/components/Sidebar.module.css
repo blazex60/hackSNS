@@ -1,0 +1,191 @@
+/* === PC: 左固定サイドバー === */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background: #1a1a1a;
+  border-right: 1px solid #2a2a2a;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 12px;
+  z-index: 200;
+  overflow-y: auto;
+}
+
+@media (max-width: 767px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+.logoArea {
+  padding: 16px 12px 32px;
+}
+
+.logoLink {
+  font-family: 'Georgia', serif;
+  font-size: 1.6rem;
+  font-weight: normal;
+  color: #ffffff;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+/* === ナビゲーション === */
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  color: #ffffff;
+  text-decoration: none;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+
+.navItem:hover {
+  background: #2d2d2d;
+}
+
+.navItemActive {
+  background: #2d2d2d;
+}
+
+.navItemActive .navLabel {
+  font-weight: 700;
+}
+
+.iconWrap {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SVGアイコンを白く反転 */
+.navIcon {
+  filter: brightness(0) invert(1);
+  display: block;
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #e53e3e;
+  color: #ffffff;
+  font-size: 9px;
+  font-weight: 700;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
+  line-height: 1;
+}
+
+.navLabel {
+  font-size: 15px;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+/* === プロフィール（最下部） === */
+.profileItem {
+  margin-top: 8px;
+  padding-top: 16px;
+  border-top: 1px solid #2a2a2a;
+}
+
+.logoutForm {
+  padding: 8px 0 4px;
+}
+
+.logoutButton {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  background: none;
+  color: #888;
+  font-size: 14px;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.logoutButton:hover {
+  background: #2d2d2d;
+  color: #ffffff;
+}
+
+.avatarCircle {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 12px;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* === モバイル: ボトムナビゲーション === */
+.bottomNav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: #1a1a1a;
+  border-top: 1px solid #2a2a2a;
+  z-index: 200;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 4px;
+}
+
+@media (max-width: 767px) {
+  .bottomNav {
+    display: flex;
+  }
+}
+
+.bottomNavItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+
+.bottomNavItem:hover {
+  background: #2d2d2d;
+}
+
+.bottomNavItemActive .navIcon {
+  filter: brightness(0) invert(1);
+  opacity: 0.6;
+}

@@ -29,10 +29,15 @@ export async function createSessionToken(payload: Omit<SessionPayload, 'exp'>): 
 export async function verifySessionToken(token: string): Promise<SessionPayload | null> {
   try {
     const { payload } = await jwtVerify(token, getSecret());
+    // ペイロード型検証
+    if (!payload.sub || typeof payload.sub !== 'string') return null;
+    if (!payload.username || typeof payload.username !== 'string') return null;
+    if (!payload.displayName || typeof payload.displayName !== 'string') return null;
+    
     return {
-      sub: payload.sub as string,
-      username: payload.username as string,
-      displayName: payload.displayName as string,
+      sub: payload.sub,
+      username: payload.username,
+      displayName: payload.displayName,
       exp: payload.exp,
     };
   } catch {

@@ -1,0 +1,11 @@
+node_modules/
+.next/
+.git/
+.omc/
+.claude/
+.vscode/
+server/data/
+*.db
+*.db-shm
+*.db-wal
+.env*.local

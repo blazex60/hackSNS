@@ -178,7 +178,7 @@ if (cluster.isPrimary) {
 
     const body = JSON.stringify({
       success: true,
-      user: { id: user.id, username: user.username, display_name: user.display_name },
+      user: { id: user.id, username: user.username, displayName: String(user.display_name) },
     });
 
     res.writeHead(200, {
