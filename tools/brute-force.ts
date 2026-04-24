@@ -26,6 +26,22 @@
 
 import { Pool } from 'undici';
 
+// ─── カラー出力ヘルパー ─────────────────────────────────────────────────────────
+
+const C = { red: '\x1b[31m', green: '\x1b[32m', bold: '\x1b[1m', reset: '\x1b[0m' };
+
+function log(obj: Record<string, unknown>): void {
+  const line = JSON.stringify({ timestamp: new Date().toISOString(), ...obj });
+  const ev = obj.event as string;
+  if (ev === 'error' || ev === 'fatal' || ev === 'request_error') {
+    process.stderr.write(`${C.red}error: ${line}${C.reset}\n`);
+  } else if (ev === 'success' || ev === 'hit' || (ev === 'end' && String(obj.result ?? '').includes('FOUND'))) {
+    process.stdout.write(`${C.bold}${C.green}accept: ${line}${C.reset}\n`);
+  } else {
+    process.stdout.write(line + '\n');
+  }
+}
+
 // ─── 文字セットプリセット ─────────────────────────────────────────────────────
 
 const CHARSETS: Record<string, string> = {
@@ -65,20 +81,12 @@ const RESUME         = getArg('--resume') ?? null;
 const API_URL        = `${BASE_URL}/api`;
 
 if (!TARGET) {
-  console.error(JSON.stringify({
-    event: 'error',
-    timestamp: new Date().toISOString(),
-    message: '--target オプションは必須です。例: npm run brute -- --target admin',
-  }, null, 2));
+  log({ event: 'error', message: '--target オプションは必須です。例: npm run brute -- --target admin' });
   process.exit(1);
 }
 
 if (MIN_LENGTH < 1 || MAX_LENGTH < MIN_LENGTH) {
-  console.error(JSON.stringify({
-    event: 'error',
-    timestamp: new Date().toISOString(),
-    message: `不正な長さ指定: min=${MIN_LENGTH}, max=${MAX_LENGTH}`,
-  }, null, 2));
+  log({ event: 'error', message: `不正な長さ指定: min=${MIN_LENGTH}, max=${MAX_LENGTH}` });
   process.exit(1);
 }
 
@@ -119,12 +127,6 @@ class Semaphore {
       this.permits++;
     }
   }
-}
-
-// ─── ログ出力ヘルパー ──────────────────────────────────────────────────────────
-
-function log(obj: Record<string, unknown>): void {
-  console.log(JSON.stringify({ timestamp: new Date().toISOString(), ...obj }));
 }
 
 // ─── パスワード生成（ジェネレーター）──────────────────────────────────────────

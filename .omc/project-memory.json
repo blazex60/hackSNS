@@ -178,6 +178,18 @@
   },
   "hotPaths": [
     {
+      "path": "tools/brute-force.ts",
+      "accessCount": 5,
+      "lastAccessed": 1777015603001,
+      "type": "file"
+    },
+    {
+      "path": "tools/dictionary-attack.ts",
+      "accessCount": 5,
+      "lastAccessed": 1777015610264,
+      "type": "file"
+    },
+    {
       "path": "server.bat",
       "accessCount": 3,
       "lastAccessed": 1777015244889,

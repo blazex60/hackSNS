@@ -8,3 +8,9 @@
 {"t":0,"agent":"ab9ade9","agent_type":"executor","event":"agent_stop","success":true,"duration_ms":11742}
 {"t":0,"agent":"ac864d5","agent_type":"executor","event":"agent_stop","success":true,"duration_ms":16064}
 {"t":0,"agent":"ab412a6","agent_type":"executor","event":"agent_stop","success":true,"duration_ms":13238}
+{"t":0,"agent":"system","event":"keyword_detected","keyword":"ralph"}
+{"t":0,"agent":"system","event":"mode_change","mode_from":"none","mode_to":"ralph"}
+{"t":0,"agent":"ac73563","agent_type":"executor","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"a2bcb95","agent_type":"executor","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"ac73563","agent_type":"executor","event":"agent_stop","success":true,"duration_ms":37572}
+{"t":0,"agent":"a2bcb95","agent_type":"executor","event":"agent_stop","success":true,"duration_ms":41357}

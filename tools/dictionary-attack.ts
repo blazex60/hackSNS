@@ -23,6 +23,22 @@ import fs from 'fs';
 import path from 'path';
 import { Pool } from 'undici';
 
+// ─── カラー出力ヘルパー ─────────────────────────────────────────────────────────
+
+const C = { red: '\x1b[31m', green: '\x1b[32m', bold: '\x1b[1m', reset: '\x1b[0m' };
+
+function log(obj: Record<string, unknown>): void {
+  const line = JSON.stringify({ timestamp: new Date().toISOString(), ...obj });
+  const ev = obj.event as string;
+  if (ev === 'error' || ev === 'fatal' || ev === 'request_error') {
+    process.stderr.write(`${C.red}error: ${line}${C.reset}\n`);
+  } else if (ev === 'success' || ev === 'hit' || (ev === 'end' && String(obj.result ?? '').includes('FOUND'))) {
+    process.stdout.write(`${C.bold}${C.green}accept: ${line}${C.reset}\n`);
+  } else {
+    process.stdout.write(line + '\n');
+  }
+}
+
 // ─── CLI 引数パース ────────────────────────────────────────────────────────────
 
 const args = process.argv.slice(2);
@@ -46,20 +62,12 @@ const VERBOSE        = hasFlag('--verbose');
 const API_URL        = `${BASE_URL}/api`;
 
 if (!TARGET) {
-  console.error(JSON.stringify({
-    event: 'error',
-    timestamp: new Date().toISOString(),
-    message: '--target オプションは必須です。例: npm run attack -- --target admin',
-  }, null, 2));
+  log({ event: 'error', message: '--target オプションは必須です。例: npm run attack -- --target admin' });
   process.exit(1);
 }
 
 if (!fs.existsSync(WORDLIST)) {
-  console.error(JSON.stringify({
-    event: 'error',
-    timestamp: new Date().toISOString(),
-    message: `パスワードリストが見つかりません: ${WORDLIST}`,
-  }, null, 2));
+  log({ event: 'error', message: `パスワードリストが見つかりません: ${WORDLIST}` });
   process.exit(1);
 }
 
@@ -88,12 +96,6 @@ class Semaphore {
       this.permits++;
     }
   }
-}
-
-// ─── ログ出力ヘルパー ──────────────────────────────────────────────────────────
-
-function log(obj: Record<string, unknown>): void {
-  console.log(JSON.stringify({ timestamp: new Date().toISOString(), ...obj }));
 }
 
 // ─── undici Pool（接続プール + パイプライニング）────────────────────────────────

@@ -1,0 +1,12 @@
+{
+  "active": true,
+  "iteration": 1,
+  "max_iterations": 100,
+  "started_at": "2026-04-24T07:25:16.830Z",
+  "prompt": "ralph 攻撃スクリプトのログがイマイチ盛り上がりに欠けるのでerror:で赤文字と正解のときだけaccept:で緑色にするなど視覚効果を追加してください。絵文字はダサいので禁止です。",
+  "session_id": "9df0adac-2747-4931-a3a0-9da75f89609d",
+  "project_path": "/home/mitsu/Documents/hackSNS",
+  "linked_ultrawork": true,
+  "awaiting_confirmation": true,
+  "last_checked_at": "2026-04-24T07:25:16.831Z"
+}
