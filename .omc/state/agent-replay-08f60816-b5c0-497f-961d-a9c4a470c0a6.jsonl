@@ -1,8 +1,0 @@
-{"t":0,"agent":"system","event":"keyword_detected","keyword":"ultrawork"}
-{"t":0,"agent":"system","event":"mode_change","mode_from":"none","mode_to":"ultrawork"}
-{"t":0,"agent":"system","event":"skill_invoked","skill_name":"oh-my-claudecode:deepinit"}
-{"t":0,"agent":"a8e4c64","agent_type":"Explore","event":"agent_start","parent_mode":"none"}
-{"t":0,"agent":"a8e4c64","agent_type":"Explore","event":"agent_stop","success":true,"duration_ms":33679}
-{"t":0,"agent":"ac9bbe4","agent_type":"unknown","event":"agent_stop","success":true}
-{"t":0,"agent":"a163d11","agent_type":"unknown","event":"agent_stop","success":true}
-{"t":0,"agent":"a1252e0","agent_type":"unknown","event":"agent_stop","success":true}
