@@ -36,8 +36,6 @@ function log(obj: Record<string, unknown>): void {
     process.stdout.write(`${C.bold}${C.green}accept: ${line}${C.reset}\n`);
   } else if (ev === 'miss') {
     process.stdout.write(`${C.dim}${C.red}deny: ${line}${C.reset}\n`);
-  } else if (ev === 'progress') {
-    process.stdout.write(`${C.yellow}scan: ${line}${C.reset}\n`);
   } else {
     process.stdout.write(line + '\n');
   }
