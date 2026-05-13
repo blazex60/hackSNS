@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1777014920519,
+  "lastScanned": 1778665247564,
   "projectRoot": "/home/mitsu/Documents/hackSNS",
   "techStack": {
     "languages": [
@@ -84,7 +84,7 @@
       "path": "public",
       "purpose": "Public files",
       "fileCount": 21,
-      "lastAccessed": 1777014920506,
+      "lastAccessed": 1778665247551,
       "keyFiles": [
         "AGENTS.md",
         "akar-icons--paper-airplane.svg",
@@ -97,7 +97,7 @@
       "path": "server",
       "purpose": null,
       "fileCount": 2,
-      "lastAccessed": 1777014920507,
+      "lastAccessed": 1778665247551,
       "keyFiles": [
         "AGENTS.md",
         "fast-api.ts"
@@ -107,7 +107,7 @@
       "path": "src",
       "purpose": "Source code",
       "fileCount": 1,
-      "lastAccessed": 1777014920513,
+      "lastAccessed": 1778665247558,
       "keyFiles": [
         "AGENTS.md"
       ]
@@ -116,7 +116,7 @@
       "path": "state",
       "purpose": null,
       "fileCount": 1,
-      "lastAccessed": 1777014920516,
+      "lastAccessed": 1778665247561,
       "keyFiles": [
         "cancel-signal-state.json"
       ]
@@ -125,7 +125,7 @@
       "path": "tools",
       "purpose": null,
       "fileCount": 3,
-      "lastAccessed": 1777014920517,
+      "lastAccessed": 1778665247561,
       "keyFiles": [
         "AGENTS.md",
         "brute-force.ts",
@@ -136,7 +136,7 @@
       "path": "server/data",
       "purpose": "Data files",
       "fileCount": 3,
-      "lastAccessed": 1777014920517,
+      "lastAccessed": 1778665247561,
       "keyFiles": [
         "app.db",
         "app.db-shm",
@@ -147,7 +147,7 @@
       "path": "server/utils",
       "purpose": "Utility functions",
       "fileCount": 2,
-      "lastAccessed": 1777014920518,
+      "lastAccessed": 1778665247562,
       "keyFiles": [
         "AGENTS.md",
         "helpers.ts"
@@ -157,7 +157,7 @@
       "path": "src/app",
       "purpose": "Application code",
       "fileCount": 7,
-      "lastAccessed": 1777014920518,
+      "lastAccessed": 1778665247562,
       "keyFiles": [
         "AGENTS.md",
         "favicon.ico",
@@ -168,7 +168,7 @@
       "path": "src/components",
       "purpose": "UI components",
       "fileCount": 8,
-      "lastAccessed": 1777014920518,
+      "lastAccessed": 1778665247562,
       "keyFiles": [
         "AGENTS.md",
         "AppShell.tsx",
@@ -178,21 +178,27 @@
   },
   "hotPaths": [
     {
-      "path": "tools/brute-force.ts",
-      "accessCount": 5,
-      "lastAccessed": 1777015603001,
+      "path": "tools/dictionary-attack.ts",
+      "accessCount": 7,
+      "lastAccessed": 1778665806030,
       "type": "file"
     },
     {
-      "path": "tools/dictionary-attack.ts",
-      "accessCount": 5,
-      "lastAccessed": 1777015610264,
+      "path": "tools/brute-force.ts",
+      "accessCount": 7,
+      "lastAccessed": 1778665811644,
       "type": "file"
     },
     {
       "path": "server.bat",
-      "accessCount": 3,
-      "lastAccessed": 1777015244889,
+      "accessCount": 4,
+      "lastAccessed": 1778665293966,
+      "type": "file"
+    },
+    {
+      "path": "AGENTS.md",
+      "accessCount": 4,
+      "lastAccessed": 1778665512558,
       "type": "file"
     },
     {
@@ -203,8 +209,20 @@
     },
     {
       "path": "デスクトップに追加.bat",
-      "accessCount": 2,
-      "lastAccessed": 1777015252106,
+      "accessCount": 3,
+      "lastAccessed": 1778665293914,
+      "type": "file"
+    },
+    {
+      "path": "public/AGENTS.md",
+      "accessCount": 3,
+      "lastAccessed": 1778665498843,
+      "type": "file"
+    },
+    {
+      "path": "server/db/AGENTS.md",
+      "accessCount": 3,
+      "lastAccessed": 1778665501904,
       "type": "file"
     },
     {
@@ -277,6 +295,90 @@
       "path": "docker-compose.yml",
       "accessCount": 1,
       "lastAccessed": 1777015112812,
+      "type": "file"
+    },
+    {
+      "path": "src/AGENTS.md",
+      "accessCount": 1,
+      "lastAccessed": 1778665412480,
+      "type": "file"
+    },
+    {
+      "path": "server/AGENTS.md",
+      "accessCount": 1,
+      "lastAccessed": 1778665412794,
+      "type": "file"
+    },
+    {
+      "path": "tools/AGENTS.md",
+      "accessCount": 1,
+      "lastAccessed": 1778665413206,
+      "type": "file"
+    },
+    {
+      "path": "src/app/AGENTS.md",
+      "accessCount": 1,
+      "lastAccessed": 1778665417108,
+      "type": "file"
+    },
+    {
+      "path": "src/components/AGENTS.md",
+      "accessCount": 1,
+      "lastAccessed": 1778665417503,
+      "type": "file"
+    },
+    {
+      "path": "server/auth/AGENTS.md",
+      "accessCount": 1,
+      "lastAccessed": 1778665417813,
+      "type": "file"
+    },
+    {
+      "path": "server/actions/AGENTS.md",
+      "accessCount": 1,
+      "lastAccessed": 1778665417865,
+      "type": "file"
+    },
+    {
+      "path": "server/utils/AGENTS.md",
+      "accessCount": 1,
+      "lastAccessed": 1778665418538,
+      "type": "file"
+    },
+    {
+      "path": "src/app/api/AGENTS.md",
+      "accessCount": 1,
+      "lastAccessed": 1778665422637,
+      "type": "file"
+    },
+    {
+      "path": "src/app/dashboard/AGENTS.md",
+      "accessCount": 1,
+      "lastAccessed": 1778665422926,
+      "type": "file"
+    },
+    {
+      "path": "src/app/feed/AGENTS.md",
+      "accessCount": 1,
+      "lastAccessed": 1778665423235,
+      "type": "file"
+    },
+    {
+      "path": "src/app/login/AGENTS.md",
+      "accessCount": 1,
+      "lastAccessed": 1778665423655,
+      "type": "file"
+    },
+    {
+      "path": "src/app/profile/AGENTS.md",
+      "accessCount": 1,
+      "lastAccessed": 1778665424160,
+      "type": "file"
+    },
+    {
+      "path": "command.txt",
+      "accessCount": 1,
+      "lastAccessed": 1778665447401,
       "type": "file"
     }
   ],

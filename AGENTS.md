@@ -1,4 +1,4 @@
-<!-- Generated: 2026-04-16 | Updated: 2026-04-16 -->
+<!-- Generated: 2026-04-16 | Updated: 2026-05-13 -->
 
 # hackSNS
 
@@ -15,6 +15,14 @@
 | `middleware.ts` | `/feed`, `/dashboard`, `/profile` をセッション認証で保護 |
 | `eslint.config.mjs` | ESLint flat config |
 | `dict.txt` | 辞書攻撃用パスワードリスト |
+| `command.txt` | 授業・演習で使う攻撃コマンドのクイックリファレンス |
+| `server.bat` | Windows 用起動スクリプト（`npm run dev` + ブラウザ自動オープン） |
+| `デスクトップに追加.bat` | デスクトップにショートカットを作成する Windows 用セットアップスクリプト |
+| `docker-compose.yml` | フロント・バックエンド・DB を分離した Docker Compose 構成 |
+| `Dockerfile` | Next.js フロントエンド用 Dockerfile |
+| `Dockerfile.backend` | fast-api バックエンド用 Dockerfile |
+| `Dockerfile.db` | SQLite DB 初期化用 Dockerfile |
+| `.dockerignore` | Docker ビルド除外設定 |
 | `CLAUDE.md` | Claude Code 向けプロジェクト指示（共有） |
 | `CLAUDE.local.md` | Claude Code 向け個人設定（非共有） |
 
@@ -37,8 +45,10 @@
 - upstream: `KTC-Security-Circle/hackSNS`
 
 ### Testing Requirements
-- 開発サーバー起動: `npm run dev`（port 3000）
+- ローカル起動: `npm run dev`（port 3000）
+- Docker 起動: `docker compose up --build`（フロント・バックエンド・DB を分離コンテナで起動）
 - 攻撃ツールテスト: `npm run fast-api`（port 3001）を別ターミナルで起動してから `npm run attack:fast` / `npm run brute:fast`
+- 攻撃コマンド早見表: `command.txt` 参照
 
 ### Common Patterns
 - 認証フロー: POST `/api` → `vulnerableLogin` → JWTセッションクッキー

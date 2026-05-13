@@ -28,15 +28,19 @@ import { Pool } from 'undici';
 
 // ─── カラー出力ヘルパー ─────────────────────────────────────────────────────────
 
-const C = { red: '\x1b[31m', green: '\x1b[32m', bold: '\x1b[1m', reset: '\x1b[0m' };
+const C = { red: '\x1b[31m', green: '\x1b[32m', yellow: '\x1b[33m', dim: '\x1b[2m', bold: '\x1b[1m', reset: '\x1b[0m' };
 
 function log(obj: Record<string, unknown>): void {
   const line = JSON.stringify({ timestamp: new Date().toISOString(), ...obj });
   const ev = obj.event as string;
   if (ev === 'error' || ev === 'fatal' || ev === 'request_error') {
-    process.stderr.write(`${C.red}error: ${line}${C.reset}\n`);
+    process.stderr.write(`${C.bold}${C.red}error: ${line}${C.reset}\n`);
   } else if (ev === 'success' || ev === 'hit' || (ev === 'end' && String(obj.result ?? '').includes('FOUND'))) {
     process.stdout.write(`${C.bold}${C.green}accept: ${line}${C.reset}\n`);
+  } else if (ev === 'miss') {
+    process.stdout.write(`${C.dim}${C.red}deny: ${line}${C.reset}\n`);
+  } else if (ev === 'progress') {
+    process.stdout.write(`${C.yellow}scan: ${line}${C.reset}\n`);
   } else {
     process.stdout.write(line + '\n');
   }

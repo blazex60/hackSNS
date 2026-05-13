@@ -1,0 +1,10 @@
+{
+  "active": true,
+  "started_at": "2026-05-13T09:41:24.211Z",
+  "original_prompt": "ultrawork batファイルを現状の構成に合わせて変更を行ってください",
+  "session_id": "08f60816-b5c0-497f-961d-a9c4a470c0a6",
+  "project_path": "/home/mitsu/Documents/hackSNS",
+  "reinforcement_count": 0,
+  "awaiting_confirmation": true,
+  "last_checked_at": "2026-05-13T09:41:24.211Z"
+}
