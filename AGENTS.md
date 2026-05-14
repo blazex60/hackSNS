@@ -16,8 +16,10 @@
 | `eslint.config.mjs` | ESLint flat config |
 | `dict.txt` | 辞書攻撃用パスワードリスト |
 | `command.txt` | 授業・演習で使う攻撃コマンドのクイックリファレンス |
-| `server.bat` | Windows 用起動スクリプト（`npm run dev` + ブラウザ自動オープン） |
-| `デスクトップに追加.bat` | デスクトップにショートカットを作成する Windows 用セットアップスクリプト |
+| `server.ps1` | Windows 用起動スクリプト（Docker Compose 起動 + ブラウザ自動オープン） |
+| `stop.ps1` | Windows 用停止スクリプト（Docker Compose 停止） |
+| `デスクトップに追加.ps1` | デスクトップにショートカットを作成する Windows 用セットアップスクリプト |
+| `デスクトップから削除.ps1` | デスクトップのショートカットを削除する Windows 用クリーンアップスクリプト |
 | `docker-compose.yml` | フロント・バックエンド・DB を分離した Docker Compose 構成 |
 | `Dockerfile` | Next.js フロントエンド用 Dockerfile |
 | `Dockerfile.backend` | fast-api バックエンド用 Dockerfile |
