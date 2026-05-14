@@ -19,6 +19,7 @@ if ($LASTEXITCODE -ne 0) {
 Start-Process powershell.exe -ArgumentList @(
     '-NoProfile',
     '-ExecutionPolicy', 'Bypass',
+    '-NoExit',
     '-Command', 'docker compose up --build'
 ) -WorkingDirectory $PSScriptRoot -WindowStyle Normal
 
