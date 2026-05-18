@@ -2,10 +2,11 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #fff;
+  background-color: var(--bg-color, #fff);
   padding-bottom: 60px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: #262626;
+  transition: background-color 0.3s ease;
 }
 
 /* Header */
@@ -13,11 +14,11 @@
   position: sticky;
   top: 0;
   z-index: 10;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Space between for back arrow and menu? */
-  /* Actually looks like: < username ... > but usually just username with dropdown arrow */
+  justify-content: space-between;
   height: 44px;
   padding: 0 16px;
   border-bottom: 1px solid #dbdbdb;
@@ -32,7 +33,7 @@
 }
 
 .verified {
-  color: #0095f6; /* Blue tick */
+  color: #0095f6;
   font-size: 12px;
 }
 
@@ -56,8 +57,8 @@
   width: 86px;
   height: 86px;
   border-radius: 50%;
-  padding: 2px;
-  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  padding: 3px;
+  background: linear-gradient(45deg, var(--gradient-start, #f09433) 0%, var(--gradient-end, #bc1888) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -67,8 +68,13 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background-color: white; /* Spacer */
+  background-color: white;
   border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--theme-color, #262626);
+  font-weight: bold;
 }
 
 .stats {
@@ -120,63 +126,24 @@
 
 .actionBtn {
   flex: 1;
-  background-color: transparent;
-  border: 1px solid #dbdbdb;
-  border-radius: 4px;
-  padding: 6px 0;
+  background-color: #efefef;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 0;
   font-weight: 600;
   font-size: 13px;
   cursor: pointer;
   text-align: center;
+  transition: background-color 0.2s ease;
 }
-
-.actionBtnPrimary {
-  /* Sometimes blue, sometimes white */
-  background-color: transparent;
-}
-
-/* Highlights */
-.highlights {
-  display: flex;
-  gap: 16px;
-  padding: 0 16px 16px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.highlights::-webkit-scrollbar {
-  display: none;
-}
-
-.highlightItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  min-width: 60px;
-}
-
-.highlightAvatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background-color: #efefef;
-  border: 1px solid #dbdbdb;
-  padding: 2px;
-}
-
-.highlightLabel {
-  font-size: 11px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 60px;
+.actionBtn:hover {
+  background-color: #dbdbdb;
 }
 
 /* Tabs */
 .tabs {
   display: flex;
   border-top: 1px solid #dbdbdb;
-  border-bottom: 1px solid #dbdbdb;
   height: 44px;
 }
 
@@ -188,11 +155,13 @@
   font-size: 20px;
   color: #8e8e8e;
   cursor: pointer;
+  transition: color 0.2s ease;
 }
 
 .activeTab {
-  color: #262626;
-  border-bottom: 1px solid #262626; /* Usually instagram just highlights the icon */
+  color: var(--theme-color, #262626);
+  border-top: 1px solid var(--theme-color, #262626);
+  margin-top: -1px;
 }
 
 /* Grid */
@@ -204,18 +173,20 @@
 
 .gridItem {
   aspect-ratio: 1 / 1;
-  background-color: #efefef;
+  background: linear-gradient(135deg, var(--gradient-start, #efefef), var(--gradient-end, #dbdbdb));
+  opacity: 0.8;
   position: relative;
 }
 
-/* Bottom Nav (Duplicated from Feed for now) */
+/* Bottom Nav */
 .bottomNav {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   height: 60px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
   border-top: 1px solid #dbdbdb;
   display: flex;
   align-items: center;
@@ -226,11 +197,190 @@
 .navIcon {
   font-size: 24px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .navProfile {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background-color: #262626; /* Active stateish */
+  background: linear-gradient(45deg, var(--gradient-start, #262626), var(--gradient-end, #262626));
+}
+
+/* ==============================================================
+   Admin Dashboard Styles
+============================================================== */
+.adminContainer {
+  display: flex;
+  min-height: 100vh;
+  background-color: #0f172a; /* Slate 900 */
+  color: #f8fafc; /* Slate 50 */
+  font-family: "Inter", -apple-system, sans-serif;
+}
+
+.adminSidebar {
+  width: 260px;
+  background-color: #1e293b; /* Slate 800 */
+  border-right: 1px solid #334155;
+  display: flex;
+  flex-direction: column;
+}
+
+.adminLogo {
+  padding: 24px;
+  font-size: 20px;
+  font-weight: 800;
+  color: #38bdf8; /* Sky 400 */
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #334155;
+}
+
+.adminNav {
+  flex: 1;
+  padding: 16px 0;
+}
+
+.adminNavItem {
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #cbd5e1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.adminNavItem:hover {
+  background-color: #334155;
+  color: #f8fafc;
+}
+
+.adminNavActive {
+  background-color: #0ea5e9;
+  color: #ffffff;
+  border-left: 4px solid #bae6fd;
+}
+.adminNavActive:hover {
+  background-color: #0284c7;
+}
+
+.adminLogout {
+  padding: 16px 24px;
+  border-top: 1px solid #334155;
+}
+
+.adminLogout a {
+  color: #f87171;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.adminMain {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.adminHeader {
+  height: 72px;
+  border-bottom: 1px solid #334155;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+}
+
+.adminHeader h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.adminProfilePic {
+  width: 40px;
+  height: 40px;
+  background-color: #38bdf8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.adminStatsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding: 32px;
+}
+
+.adminStatCard {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.adminStatTitle {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.adminStatValue {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.adminAlert {
+  color: #f43f5e;
+}
+
+.adminRecentActivity {
+  padding: 0 32px 32px;
+}
+
+.adminRecentActivity h3 {
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: #e2e8f0;
+}
+
+.adminTable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #1e293b;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.adminTable th,
+.adminTable td {
+  padding: 16px 24px;
+  text-align: left;
+  border-bottom: 1px solid #334155;
+}
+
+.adminTable th {
+  background-color: #0f172a;
+  color: #94a3b8;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.adminTable tr:last-child td {
+  border-bottom: none;
+}
+
+.adminAlertText {
+  color: #f43f5e;
+  font-weight: 600;
+}
+
+.adminSuccessText {
+  color: #10b981;
+  font-weight: 600;
 }

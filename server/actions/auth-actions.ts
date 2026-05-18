@@ -34,8 +34,8 @@ export async function loginAction(formData: FormData): Promise<void> {
       path: '/',
       maxAge: 60 * 60 * 24,
     });
-    revalidatePath('/feed');
-    redirect('/feed');
+    revalidatePath('/profile');
+    redirect('/profile');
   } else {
     redirect('/login?error=invalid-credentials');
   }

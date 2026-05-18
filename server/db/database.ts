@@ -8,7 +8,7 @@ if (!fs.existsSync(dbDir)) {
   fs.mkdirSync(dbDir, { recursive: true });
 }
 
-const db = new Database(dbPath);
+const db = new Database(dbPath, { timeout: 10000 });
 
 // パフォーマンス最適化: WALモードで並行読み取りを有効化
 db.pragma('journal_mode = WAL');
